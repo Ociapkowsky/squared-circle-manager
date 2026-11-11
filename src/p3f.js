@@ -55,7 +55,7 @@ function staffLook(role,l){l=Object.assign({},l);l.mask='none';l.gear='none';l.a
  if(l.build==='big'&&role!=='coach')l.build='std';
  return l}
 function mkStaff(role,tier){
- const cc=pickR(COUNTRIES),fem=rnd()<(role==='coach'?.2:.28);
+ const cc=staffCC(role,tier),fem=rnd()<(role==='coach'?.2:.28);
  const lo=18+tier*5,hi=40+tier*11,lvl=clamp(Math.round(lo+(hi-lo)*Math.pow(rnd(),1.1)),15,95);
  const s={id:'s'+(G.uid++),role,name:nameFor(cc,fem),country:cc,age:rg([role==='ref'?26:30,62]),lvl,spec:pickR(SPECS),contract:52,look:staffLook(role,randLook(Math.random,cc,fem))};
  if(fem)s.g='f';if(role==='scout')s.reg=pickR(Object.keys(REGS));s.salary=staffSal(role,lvl,tier);return s}

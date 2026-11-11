@@ -35,20 +35,20 @@ function marketView(full){
  if(d.g==='m')fa=fa.filter(w=>w.g!=='f');else if(d.g==='f')fa=fa.filter(w=>w.g==='f');
  if(d.c!=='all')fa=fa.filter(w=>w.country===d.c);
  const q=(d.q||'').trim().toLowerCase();if(q)fa=fa.filter(w=>w.name.toLowerCase().indexOf(q)>=0);
- const key={pop:w=>-w.pop,ovr:w=>-ovr(w),age:w=>w.age,price:w=>salaryOf(w,G.fed.tier)}[d.s]||(w=>-w.pop);
- fa.sort((a,b)=>key(a)-key(b)||b.pop-a.pop);
+ const key={pop:w=>w.pop,ovr:w=>ovr(w),age:w=>w.age,price:w=>salaryOf(w,G.fed.tier),tcg:w=>mkTcgN(w)}[d.s]||(w=>w.pop);const lo=d.dir==='lo'?1:-1;
+ fa.sort((a,b)=>lo*(key(a)-key(b))||b.pop-a.pop);
  const pages=Math.max(1,Math.ceil(fa.length/MKP));d.p=clamp(d.p,0,pages-1);
  const opt=(v,l,c)=>'<option value="'+esc(v)+'"'+(c===v?' selected':'')+'>'+esc(l)+'</option>';
  const cs=[...new Set(G.ws.filter(w=>w.fed==='FA').map(w=>w.country))].sort((a,b)=>cn(a).localeCompare(cn(b)));
  let h='<h3>'+t('w.market')+' · '+total+'</h3><div class="card"><div class="grid g4" style="gap:8px">'+
   '<div><label class="px" for="mkq">'+t('mk.search')+'</label><input id="mkq" class="field" data-chg="mkset" data-k="q" value="'+esc(d.q||'')+'" placeholder="'+t('mk.ph')+'"></div>'+
-  '<div><label class="px" for="mks">'+t('rk.sort')+'</label><select id="mks" class="field" data-chg="mkset" data-k="s">'+opt('pop',t('st.pop'),d.s)+opt('ovr',t('rk.ovr'),d.s)+opt('age',t('mk.young'),d.s)+opt('price',t('mk.cheap'),d.s)+'</select></div>'+
+  '<div><label class="px" for="mks">'+t('rk.sort')+'</label><select id="mks" class="field" data-chg="mkset" data-k="s">'+opt('pop',t('st.pop'),d.s)+opt('ovr',t('rk.ovr'),d.s)+opt('age',t('mk.age'),d.s)+opt('price',t('mk.pay'),d.s)+opt('tcg',t('mk.tcg'),d.s)+'</select><select class="field" style="margin-top:6px" data-chg="mkset" data-k="dir" aria-label="'+t('mk.dir')+'">'+opt('hi',t('mk.hi'),d.dir||'hi')+opt('lo',t('mk.lo'),d.dir||'hi')+'</select></div>'+
   '<div><label class="px" for="mkg">'+t('rk.div')+'</label><select id="mkg" class="field" data-chg="mkset" data-k="g">'+opt('all',t('rk.all'),d.g)+opt('m',t('g.m'),d.g)+opt('f',t('g.f'),d.g)+'</select></div>'+
   '<div><label class="px" for="mkc">'+t('rk.cn')+'</label><select id="mkc" class="field" data-chg="mkset" data-k="c">'+opt('all',t('rk.all'),d.c)+cs.map(c=>opt(c,cn(c),d.c)).join('')+'</select></div></div></div>';
  const pg=pages>1?'<div class="row spread"><button class="btn sm" data-act="mkpage" data-d="-1"'+(d.p<=0?' disabled':'')+'>◀</button><span class="mute">'+t('mk.page',{p:d.p+1,n:pages,c:fa.length})+'</span><button class="btn sm" data-act="mkpage" data-d="1"'+(d.p>=pages-1?' disabled':'')+'>▶</button></div>':'<div class="mute">'+t('mk.found',{c:fa.length})+'</div>';
- h+=pg+'<div class="grid gW">'+fa.slice(d.p*MKP,d.p*MKP+MKP).map(w=>{const fee=Math.round(salaryOf(w,G.fed.tier)*8*relDisc(w));return wCard(w,'<div><button class="btn sm gold" data-act="sign" data-id="'+w.id+'"'+(full||G.fed.cash<fee?' disabled':'')+'>'+t('w.sign',{m:money(fee)})+'</button> <span class="mute" style="font-size:12px">'+(full?t('w.full'):G.fed.cash<fee?t('w.cannot'):'')+'</span></div>')}).join('')+'</div>'+(pages>1?pg:'');
+ h+=pg+'<div class="grid gW">'+fa.slice(d.p*MKP,d.p*MKP+MKP).map(w=>{const fee=Math.round(salaryOf(w,G.fed.tier)*8*relDisc(w));return wCard(w,mkTcgTag(w)+'<div><button class="btn sm gold" data-act="sign" data-id="'+w.id+'"'+(full||G.fed.cash<fee?' disabled':'')+'>'+t('w.sign',{m:money(fee)})+'</button> <span class="mute" style="font-size:12px">'+(full?t('w.full'):G.fed.cash<fee?t('w.cannot'):'')+'</span></div>')}).join('')+'</div>'+(pages>1?pg:'');
  return h}
-Object.assign(CHG,{mkset(e){const d=mkState();d[e.dataset.k]=e.value;d.p=0;render()}});
+Object.assign(CHG,{mkset(e){const d=mkState();d[e.dataset.k]=e.value;if(e.dataset.k==='s')d.dir='hi';d.p=0;render()}});
 Object.assign(ACT,{mkpage(e){const d=mkState();d.p+=+e.dataset.d;render();window.scrollTo(0,document.body.scrollHeight>2000?600:0)}});
 // ---- Talent prospects on the World screen ----
 function prosView(){
@@ -63,3 +63,7 @@ function rkAct(w){if(w.fed==='FA'||w.fed==='PRO'||w.fed===G.fed.id||w.fed==='RET
  const off=mine().length>=ROSTERMAX[G.fed.tier-1]||(w.pcd||0)>G.week;const fee=poachFee(w);
  return '<button class="btn sm" data-act="poach" data-id="'+w.id+'"'+(off||G.fed.cash<fee?' disabled':'')+'>'+t('rk.poach',{m:money(fee),p:Math.round(poachChance(w)*100)})+'</button>'}
 Object.assign(ACT,{async poach(e){await poach(e.dataset.id)}});
+
+function mkTcgN(w){try{const m=G.me&&G.me.col&&G.me.col[w.id];return m?m.n:0}catch(e){return 0}}
+function mkTcgTag(w){const n=mkTcgN(w);return n?'<div class="row"><span class="tag" style="color:var(--gold);border-color:var(--gold)">'+t('mk.tcgtag',{n:n})+'</span></div>':''}
+Object.assign(D,{'mk.age':['Wiek','Age'],'mk.pay':['Pensja','Salary'],'mk.tcg':['Moje karty TCG','My TCG cards'],'mk.dir':['Kierunek sortowania','Sort direction'],'mk.hi':['Od największej wartości','Highest first'],'mk.lo':['Od najmniejszej wartości','Lowest first'],'mk.tcgtag':['🃏 Masz kartę TCG ×{n}','🃏 You own the TCG card ×{n}']});
