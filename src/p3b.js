@@ -36,7 +36,7 @@ function helperStable(m){
  return c.length?pickR(c):null;
 }
 function pickEvent(m,fo,hp){
- const f=fo?fo.f:null;if(rnd()>(f?.82:.66))return null;
+ const f=fo?fo.f:null;if(RUN&&RUN.nev>=2)return null;if(rnd()>(f?.22:.12))return null;
  const c=[];const boost=f?SC[f.sc].ev:null;
  if(hp)c.push({id:'interf',w:1+(f?1:0)+(boost==='interf'?2:0)+(f&&kd(f.sc).st?2:0)});
  const{A,B}=sides(m);
@@ -115,7 +115,7 @@ async function runShow(){
  const doPromos=async(at)=>{for(const p of prs.filter(p=>Math.min(p.at,total)===at)){cur=document.createElement('div');cur.className='mc mc-promo';live.appendChild(cur);let o;try{o=runPromo(p,log)}finally{cur=null}out.push(o);await dl(700)}};
  for(let i=0;i<total;i++){
   await doPromos(i);
-  if(i>0&&i<total&&RUN.nev<2&&rnd()<.22){RUN.nev++;RUN.bonus+=await showEvent(RUN.fast)}
+  if(i>0&&i<total&&RUN.nev<2&&rnd()<.08){RUN.nev++;RUN.bonus+=await showEvent(RUN.fast)}
   const m=ready[i];const{A,B}=sides(m);let oc=outcome(m);const ffa=!!MODES[m.mode].ffa;
   const an=ffa?names(teamsOf(m)[0]):names(A),bn=ffa?names(A.slice(teamsOf(m)[0].length)):names(B);
   const fo=feudOf(m);const wasBlow=!!fo&&fo.f.heat>=70&&fo.cov>=.99;
@@ -128,7 +128,7 @@ async function runShow(){
   log('ln',esc(lineFor('mid',an,bn)));await dl(700);
   const hp=helperStable(m);const ev=pickEvent(m,fo,hp);
   if(ev){
-   const x={w:names(oc.wi),l:names(oc.li),s:''};if(ev==='interf'&&hp){x.s=hp.st.name;x.w=names(hp.side)}if(ev==='rvheckle'||ev==='allycorner')x.s=RUN.relx||'?';
+   RUN.nev=(RUN.nev||0)+1;const x={w:names(oc.wi),l:names(oc.li),s:''};if(ev==='interf'&&hp){x.s=hp.st.name;x.w=names(hp.side)}if(ev==='rvheckle'||ev==='allycorner')x.s=RUN.relx||'?';
    const o=RUN.fast?EV[ev][0]:await ask(ev,m,x);applyFx(m,res,o,oc.wi,oc.li);
    if(ev==='interf'&&hp)hp.st.members.forEach(id=>{if(W(id))W(id).morale=clamp(W(id).morale+1.5,0,100)});
   }
