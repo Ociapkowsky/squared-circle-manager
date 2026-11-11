@@ -87,7 +87,7 @@ function vInbox(){
  h+='</div>';
  h+='<div class="card stack"><h3>'+t('ibx.log')+'</h3>';
  if(!G.inbox.length)h+='<div class="mute">'+t('ui.none')+'</div>';
- G.inbox.slice(0,40).forEach((m,i)=>{const nw=i<Math.min(G.inbox.length,(G.ibxN||0)-(G.ibxR||0));h+='<div class="stack" style="gap:1px;border-top:1px solid var(--line,#8884);padding-top:5px"><div class="row spread" style="gap:8px"><b>'+(nw?'● ':'')+(m.k==='a'?'📖 ':m.k==='m'?'⏳ ':'✉ ')+esc(m.t)+'</b><span class="mute" style="font-size:12px">'+t('ibx.wk')+' '+m.w+'</span></div>'+(m.b?'<div class="mute" style="font-size:13px">'+esc(m.b)+'</div>':'')+(m.c?'<div style="font-size:13px">→ '+esc(m.c)+'</div>':'')+'</div>'});
+ G.inbox.slice(0,40).forEach((m,i)=>{const nw=i<Math.min(G.inbox.length,(G.ibxN||0)-(G.ibxR||0));h+='<div class="stack" style="gap:1px;border-top:1px solid var(--line,#8884);padding-top:5px"><div class="row spread" style="gap:8px"><b>'+(nw?'● ':'')+(m.k==='a'?'📖 ':m.k==='m'?'⏳ ':'✉ ')+esc(m.t)+'</b><span class="mute" style="font-size:12px">'+t('ibx.wk')+' '+m.w+'</span></div>'+(m.b?'<div class="mute" style="font-size:13px">'+esc(m.b)+'</div>':'')+(m.c?'<div style="font-size:13px">→ '+esc(m.c)+'</div>':'')+(m.e?'<div style="font-size:13px;color:var(--gold)">'+t('ibx.fx')+': '+esc(m.e)+'</div>':'')+'</div>'});
  h+='</div>';G.ibxR=G.ibxN;return h}
 function angCard(){
  if(!G||!G.angles||!G.angles.length)return '';

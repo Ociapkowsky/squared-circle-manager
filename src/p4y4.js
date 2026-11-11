@@ -20,9 +20,8 @@ function trnCard(w,watch){
   +(watch?'<div style="font-size:12.5px">'+esc(t('trn.rep',{n:rep.o}))+' · '+esc(sh?t('trn.wl.'+sh):t('trn.wl.q'))+'</div>':'')
   +'</div></div>';
  let b='<div class="dvch" style="margin-top:4px">';
- if(!watch)b+='<button class="btn sm" data-act="trnwatch" data-id="'+w.id+'">'+esc(t('trn.watch'))+'</button>';
- else if(off)b+='<span class="pcc pr">'+esc(t('trn.pend',{n:Math.max(0,off.wk+TRN_WAIT-G.week)}))+'</span>';
- else{[0,1,2].forEach(l=>{const c=trnCost(w,l);b+='<button class="btn sm" data-act="trnoffer" data-id="'+w.id+'" data-l="'+l+'"'+(G.fed.cash<c?' disabled':'')+'>'+esc(t('trn.o.'+l))+' · '+esc(money(c))+'</button>'});b+='<button class="btn sm" data-act="trnunwatch" data-id="'+w.id+'">'+esc(t('trn.unwatch'))+'</button>'}
+ if(off)b+='<span class="pcc pr">'+esc(t('trn.pend',{n:Math.max(0,off.wk+TRN_WAIT-G.week)}))+'</span>';
+ else{[0,1,2].forEach(l=>{const c=trnCost(w,l);b+='<button class="btn sm" data-act="trnoffer" data-id="'+w.id+'" data-l="'+l+'"'+(G.fed.cash<c?' disabled':'')+'>'+esc(t('trn.o.'+l))+' · '+esc(money(c))+'</button>'});b+=(watch?'<button class="btn sm" data-act="trnunwatch" data-id="'+w.id+'">'+esc(t('trn.unwatch'))+'</button>':'<button class="btn sm" data-act="trnwatch" data-id="'+w.id+'">'+esc(t('trn.watch'))+'</button>')}
  return h+b+'</div>'}
 function trnOpen(){
  const T=trnEns();const full=mine().length>=ROSTERMAX[G.fed.tier-1];
@@ -33,10 +32,15 @@ function trnOpen(){
  if(T.hist.length)h+='<div class="px">'+esc(t('trn.hist'))+'</div><div class="pcch">'+T.hist.slice(0,5).map(x=>'<span class="pcc '+(x.ok?'up':'dn')+'">'+esc(t('trn.h.'+(x.ok?'ok':'no'),{w:x.n}))+'</span>').join('')+'</div>';
  const F={all:()=>true,young:w=>w.age<=25,stars:w=>w.pop>=45,cheap:w=>salaryOf(w,G.fed.tier)<=salaryOf({pop:30,ring:40},G.fed.tier)*1.6};
  h+='<div class="px">'+esc(t('trn.find'))+'</div><div class="dvch">'+Object.keys(F).map(k=>'<button class="btn sm'+(T.f===k?' gold':'')+'" data-act="trnf" data-k="'+k+'">'+esc(t('trn.f.'+k))+'</button>').join('')+'</div>';
- const cand=trnPool().filter(F[T.f]||F.all).filter(w=>!(w.id in T.w)).sort((a,b)=>ovr(b)-ovr(a)).slice(0,8);
+ const SO={ovr:w=>ovr(w),pop:w=>w.pop,age:w=>w.age,pay:w=>w.salary||0},lo=T.dr==='lo'?1:-1;
+ h+='<div class="dvch"><select class="field" data-chg="trnset" data-k="fd" aria-label="'+esc(t('trn.fd'))+'"><option value="all">'+esc(t('trn.fd.all'))+'</option>'+(G.rivals||[]).map(r=>'<option value="'+r.id+'"'+(T.fd===r.id?' selected':'')+'>'+esc(r.name)+' ('+trnPool().filter(w=>w.fed===r.id).length+')</option>').join('')+'</select>'
+  +'<select class="field" data-chg="trnset" data-k="so" aria-label="'+esc(t('trn.sort'))+'">'+[['ovr',t('rk.ovr')],['pop',t('st.pop')],['age',t('mk.age')],['pay',t('mk.pay')]].map(x=>'<option value="'+x[0]+'"'+((T.so||'ovr')===x[0]?' selected':'')+'>'+esc(x[1])+'</option>').join('')+'</select>'
+  +'<select class="field" data-chg="trnset" data-k="dr" aria-label="'+esc(t('mk.dir'))+'"><option value="hi">'+esc(t('mk.hi'))+'</option><option value="lo"'+(T.dr==='lo'?' selected':'')+'>'+esc(t('mk.lo'))+'</option></select></div>';
+ const sk=SO[T.so||'ovr'];const cand=trnPool().filter(F[T.f]||F.all).filter(w=>(!T.fd||T.fd==='all'||w.fed===T.fd)).filter(w=>!(w.id in T.w)).sort((a,b)=>lo*(sk(a)-sk(b))||ovr(b)-ovr(a)).slice(0,25);
  h+=cand.length?cand.map(w=>trnCard(w,false)).join(''):'<p class="mute" style="margin:0;font-size:13px">'+esc(t('trn.none'))+'</p>';
  h+='<button class="btn gold" data-act="trnclose">'+esc(t('tk.close'))+'</button>';openModal('<div class="pcm">'+h+'</div>')}
 ACT.trnopen=()=>{trnOpen()};ACT.trnclose=()=>{closeModal();try{save()}catch(e){}render()};
+Object.assign(CHG,{trnset(e){const T=trnEns();T[e.dataset.k]=e.value;trnOpen()}});
 ACT.trnf=e=>{trnEns().f=e.dataset.k;trnOpen()};
 ACT.trnwatch=e=>{const T=trnEns();if(Object.keys(T.w).length>=12)return;T.w[e.dataset.id]=0;trnOpen()};
 ACT.trnunwatch=e=>{const T=trnEns();delete T.w[e.dataset.id];T.off=T.off.filter(x=>x.id!==e.dataset.id);trnOpen()};
@@ -70,7 +74,7 @@ NX('trpoach',['Rywal chce Twojego zawodnika','A rival wants your wrestler'],['{r
 const _trnVF=vFa;vFa=function(){
  let h=_trnVF.apply(this,arguments);
  try{const T=trnEns();h=h.replace(/(<div class="top"><h2>[^<]*<\/h2>)/,'$1')+'';
-  h='<div class="card stack" style="margin-bottom:10px"><div class="row spread"><div><b>'+esc(t('trn.t'))+'</b><div class="mute" style="font-size:13px">'+esc(t('trn.card',{a:Object.keys(T.w).length,b:T.off.length}))+'</div></div><button class="btn sm" data-act="trnopen">'+esc(t('trn.open'))+'</button></div></div>'+h}catch(e){}
+  h=trnCardHtml(T)+h}catch(e){}
  return h};
 Object.assign(D,{
  'trn.t':['Rynek transferowy','Transfer market'],'trn.open':['Otwórz','Open'],'trn.card':['Obserwowani: {a} · oferty w toku: {b}','Watched: {a} · offers pending: {b}'],
@@ -88,3 +92,9 @@ if(hasDoc&&typeof document.head!=='undefined'){try{if(!document.getElementById('
 (function(){_T('transfers','Rynek transferowy','Na ekranie Wolni agenci jest karta Rynek transferowy. Możesz obserwować zawodników federacji rywali: im dłużej, tym dokładniejszy raport (mniejszy margines potencjału, a po 6 tygodniach poznasz cechę). Ofertę składasz w jednej z trzech wersji: standardowej, hojnej albo agresywnej. Wyższa daje większą szansę, ale kosztuje więcej, a zawodnik dostaje podwyżkę. Wynik poznasz po 2 tygodniach. Na szansę wpływa popularność Twojej federacji w porównaniu z jego obecną, morale i lojalność zawodnika, końcówka kontraktu, relacja z nim i Twoja wiarygodność w mediach. Rywale też składają oferty za Twoich zawodników, a Ty decydujesz: zatrzymać podwyżką, sprzedać albo odmówić.','On the Free agents screen there is a Transfer market card. You can watch wrestlers of rival promotions: the longer you watch, the sharper the report (a smaller potential margin, and after 6 weeks you learn the trait). You make an offer in one of three versions: standard, generous or aggressive. A higher one raises the chance but costs more, and the wrestler gets a raise. You learn the result after 2 weeks. The chance depends on your promotion’s popularity compared with their current one, the wrestler’s morale and loyalty, the end of their contract, your relationship with them and your media credibility. Rivals also bid for your wrestlers and you decide: keep with a raise, sell or refuse.');
  if(!TUTS.some(x=>x[1]==='transfers')){let i=-1;TUTS.forEach((x,k)=>{if(x[0]==='fa')i=k});TUTS.splice(i>=0?i+1:TUTS.length-1,0,['fa','transfers'])}})();
 normTexts();
+
+function trnCardHtml(T){return '<div class="card stack" style="margin-bottom:10px;border-color:var(--gold)"><div class="row spread" style="gap:10px"><div><b>'+esc(t('trn.big'))+'</b><div class="mute" style="font-size:13px">'+esc(t('trn.bigd'))+'</div><div class="mute" style="font-size:13px">'+esc(t('trn.card',{a:Object.keys(T.w).length,b:T.off.length}))+'</div></div><button class="btn gold" data-act="trnopen">'+esc(t('trn.open'))+'</button></div></div>'}
+(function(){const _vw=vWorld;vWorld=function(){let h=_vw.apply(this,arguments);try{return trnCardHtml(trnEns())+h}catch(e){return h}}})();
+Object.assign(D,{'trn.fd':['Federacja','Federation'],'trn.fd.all':['Wszystkie federacje','All federations'],'trn.sort':['Sortuj','Sort'],
+ 'trn.big':['Podkup zawodnika innej federacji','Sign a wrestler from another promotion'],
+ 'trn.bigd':['Przeglądaj zawodników rywali, obserwuj ich dla dokładniejszych raportów i składaj oferty.','Browse rival wrestlers, watch them for better reports and make offers.']});

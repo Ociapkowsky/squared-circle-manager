@@ -32,7 +32,7 @@ async function feudChapters(){
   return}
  const fs=shuffle(G.feuds.filter(f=>!f.fedId&&SC[f.sc]&&fbMine(f)));
  for(const f of fs){
-  if(f.heat>=70&&f.stake==null&&(f.matches||0)>=2){await fbStake(f);return}
+  if(f.heat>=70&&f.stake==null&&(f.matches||0)>=2&&!(f.ppv&&G.week<f.ppv)){await fbStake(f);return}
   const need=f.heat>=60?2:f.heat>=30?1:0;if((f.chp||0)<need&&(f.matches||0)>=1){if(await fbBeat(f))return}}}
 function feudAfter(f,aWon,li){
  try{if(!G.fhist)G.fhist=[];const W1=aWon?f.A:f.B,L1=aWon?f.B:f.A;

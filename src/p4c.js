@@ -60,6 +60,7 @@ function vFeuds(){
    (sp.stip?'<div class="note">'+t('f.suggest',{s:t('stip.'+sp.stip)})+'</div>':'')+(f.fav?'<div class="note gold">'+t('f.fav',{s:t('stip.'+f.fav)})+'</div>':'')+((f.chp||f.stake&&f.stake!=='none')?'<div class="note">'+(f.chp?t('fb.chn',{n:f.chp}):'')+(f.stake&&f.stake!=='none'?' · '+t('fb.st.'+f.stake):'')+'</div>':'')+
    (D['sc.'+f.sc+'.e']?'<div class="note">'+t('sc.'+f.sc+'.e')+'</div>':'')+
    ['retire','fire'].map(e=>sp.end===e?'<div class="note neg">'+t('f.warn.'+e)+'</div>':'').join('')+
+   ppvFeudUi(f,i)+
    (f.heat>=70&&md?'<div class="note gold">'+t('f.fullmatch',{n:f.A.length+f.B.length,m:modeLabel(md)})+'</div>':'')+
    '<div class="row"><button class="btn sm" data-act="feuddet" data-i="'+i+'">'+t('f.details')+'</button><button class="btn sm danger" data-act="endfeud" data-i="'+i+'">'+t('f.end')+'</button></div></div>'}).join('')+'</div>';
  return h+feudForm();
