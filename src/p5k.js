@@ -11,7 +11,7 @@ const EV_KW=[
  ['influ',/streamer|influenc/i],
  ['sport',/przerwa mi.{1,2}dzy sezon|off-?season/i],
  ['local',/w okolicy|local star|in the area/i],
- ['attack',/zamaskowan|napastnik|napad|zasadz|masked|attack|ambush|assault|sabota|run-?in|wtargni|kapturz|hooded/i],
+ ['attack',/atak|zamaskowan|napastnik|napad|zasadz|masked|attack|ambush|assault|sabota|run-?in|wtargni|kapturz|hooded/i],
  ['presser',/konferencj|press conference|presser/i],
  ['backarg',/k.{1,2}tni|b.{1,2}jk[aię]|bijatyk|awantur|brawl|scuffle|fistfight|shoving|bar fight|fight (in|at|before|with)/i],
  ['injury',/kontuzj|uraz|medyk|injur|medic|stretcher|noszach|pogotowi/i],
@@ -22,7 +22,7 @@ const EV_KW=[
  ['rival',/rywal|podkup|przej.{1,2}cie federacji|wrogie|konkurencj|rival|poach|takeover/i],
  ['belt',/\bpas(y|ów|a|ie|em|u)?(?![a-ząćęłńóśźż])|belts?\b|title\b/i],
  ['media',/dziennikarz|podcast|journalist|reporter|wywiad|interview/i],
- ['locker',/szatni|locker/i]
+ ['locker',/szatni|locker/i],
  ['board',/(^|[^a-ząćęłńóśźż])rad(a|y|zie|ę|ą)(?![a-ząćęłńóśźż])|zarz[ąa]d|akcjonariusz|board|shareholder|prezes|audytor/i],
  ['techfail',/awari|przeciek.{0,3}ceg|pr.{1,2}du|o.{1,2}wietlen|nag.{1,2}o.{1,2}nien|transmisj|stream|power|outage|lighting|failure/i],
  ['holiday',/halloween|[śs]wi[ęe]ta|noworoczn|walentyn|wielkanoc|gwiazdkow|mikołajki|black friday|christmas|easter|valentine|new year|dzie[ńn] dziecka/i],
@@ -35,7 +35,7 @@ const EV_KW=[
  ['venue',/hal[aęiy]|arena|stadion|dach|remont|sal[aęy]|venue|roof/i],
  ['persona',/posta[ćc]|maska|maski|image|wizerunek|character|mask|persona/i],
  ['scandal',/skandal|pozew|policj|nalot|w[łl]amanie|zatrzymani|afera|wyciek|scandal|lawsuit|police|leak/i],
- ['manager',/menad[żz]er|manager/i],
+ ['manager',/menad[żz]er|manager/i]
 ];
 function evArtFor(txt){if(typeof EVART==='undefined')return '';for(const [k,re] of EV_KW){if(EVART[k]&&re.test(txt))return EVART[k]}return ''}
 (function(){const css=document.createElement('style');css.textContent='.evart{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin:0 0 12px;border:1px solid var(--line)}';document.head.appendChild(css)})();
