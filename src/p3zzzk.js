@@ -1,5 +1,5 @@
 /* ===== Splash / title screen ===== */
-let SPLASH=true;const GAME_VER='0.9.0';
+let SPLASH=true;const GAME_VER='0.5.0';
 const _vsSplash=viewStart;
 viewStart=function(){
  if(!SPLASH)return _vsSplash();
