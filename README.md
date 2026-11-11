@@ -19,4 +19,4 @@ Release: push a tag like `v1.0.0` (or run the workflow manually) and download th
 Saves: Windows `%APPDATA%/Squared Circle Manager/saves`, macOS `~/Library/Application Support/Squared Circle Manager/saves`, Linux `~/.config/Squared Circle Manager/saves`.
 
 ## Credits
-- Music: "Cyberpunk Moonlight Sonata" (CC0 / public domain), supplied by the game author.
+- Music: "Cyberpunk Moonlight Sonata" by joth (https://opengameart.org/users/joth), CC0 / public domain.

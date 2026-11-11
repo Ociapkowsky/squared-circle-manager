@@ -1,7 +1,7 @@
 /* ===== round 11e: background music (looped, own volume, starts after the first click) ===== */
 Object.assign(D,{
  'mus.title':['Muzyka w tle','Background music'],'mus.on':['Muzyka włączona','Music on'],'mus.off':['Muzyka wyłączona','Music off'],'mus.vol':['Głośność muzyki','Music volume'],
- 'mus.credit':['Utwór „Cyberpunk Moonlight Sonata” (CC0, domena publiczna).','Track “Cyberpunk Moonlight Sonata” (CC0, public domain).']
+ 'mus.credit':['Muzyka: „Cyberpunk Moonlight Sonata” – joth (OpenGameArt.org/users/joth), CC0 / domena publiczna.','Music: “Cyberpunk Moonlight Sonata” by joth (OpenGameArt.org/users/joth), CC0 / public domain.']
 });
 const LS_MUS='ringboss.mus.v1';
 const MUS={on:true,vol:.35,el:null,started:false};
