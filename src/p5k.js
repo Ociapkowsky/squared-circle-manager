@@ -35,6 +35,7 @@ const EV_KW=[
  ['venue',/hal[aęiy]|arena|stadion|dach|remont|sal[aęy]|venue|roof/i],
  ['persona',/posta[ćc]|maska|maski|image|wizerunek|character|mask|persona/i],
  ['scandal',/skandal|pozew|policj|nalot|w[łl]amanie|zatrzymani|afera|wyciek|scandal|lawsuit|police|leak/i],
+ ['finale',/fina[łl]\s+feud|stawka fina|feud finale|finale stakes/i],
  ['manager',/menad[żz]er|manager/i]
 ];
 function evArtFor(txt){if(typeof EVART==='undefined')return '';for(const [k,re] of EV_KW){if(EVART[k]&&re.test(txt))return EVART[k]}return ''}
