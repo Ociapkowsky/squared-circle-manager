@@ -1,0 +1,22 @@
+Object.assign(D,{
+'nav.cal':['Kalendarz','Calendar'],
+'cal.title':['Kalendarz gal','Show calendar'],
+'cal.sub':['Harmonogram gal Twojej federacji i rywali. Na bieżącej gali rywala możesz zrobić interwencję swoim zawodnikiem.','Schedule of your shows and rival shows. At a rival show this week you can run an interference with one of your wrestlers.'],
+'cal.thisweek':['Ten tydzień (tydz. {n})','This week (week {n})'],
+'cal.ownnow':['Twoja gala: ułożone walki: {n}','Your show: booked matches: {n}'],
+'cal.pick':['Zawodnik do interwencji','Wrestler for the interference'],
+'cal.rules':['Jedna interwencja na tydzień. Sukces zależy od popularności i charyzmy; zwycięstwo rywala można odwrócić. Porażka grozi zmęczeniem i kontuzją. Rozstrzyga się po zakończeniu tygodnia.','One interference per week. Success depends on popularity and charisma and can flip the rival\'s result. Failure risks fatigue and injury. Resolved when the week ends.'],
+'cal.help':['Pomóż: {n}','Help: {n}'],
+'cal.set':['interwencja: {n}','interference: {n}'],
+'cal.active':['Zaplanowana interwencja: {w} na gali {f}.','Interference planned: {w} at {f}.'],
+'cal.cancel':['Anuluj','Cancel'],
+'cal.all':['Wszystkie federacje: {n}','All promotions: {n}'],'cal.near':['Najbliższe Twojej federacji i z wielką galą: {n}','Closest to you plus those with a big event: {n}'],'cal.showall':['Pokaż wszystkie','Show all'],'cal.shownear':['Tylko najbliższe','Only closest'],
+'cal.main':['Main event','Main event'],'cal.show':['Gala','Show'],'cal.nocard':['Brak zdrowych zawodników do ułożenia karty.','No healthy wrestlers to build a card.'],
+'cal.sched':['Najbliższe 12 tygodni','Next 12 weeks'],'cal.week':['Tydzień','Week'],'cal.wk':['Tydz. {n}','Wk {n}'],
+'cal.legend':['• tygodniowa gala, ★ wielka gala (PPV/PLE) z nazwą.','• weekly show, ★ big event (PPV/PLE) with its name.'],
+'cal.results':['Ostatnie wyniki rywali','Recent rival results'],'cal.def':['pokonuje','defeats'],
+'cal.ok':['Interwencja udana','Interference worked'],'cal.fail':['Interwencja nieudana','Interference failed'],
+'n.intvok':['{w} interweniuje na gali {f} i {m} wygrywa! Rywal traci prestiż.','{w} interferes at {f} and {m} wins! The rival loses prestige.'],
+'n.intvfail':['{w} próbuje interweniować na gali {f}, ale zostaje przyłapany.','{w} tries to interfere at {f} but gets caught.'],
+'n.intvinj':['{w} kontuzjowany po nieudanej interwencji.','{w} is hurt after the failed interference.']
+});

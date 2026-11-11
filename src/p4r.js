@@ -1,0 +1,1 @@
+Object.assign(ACT,{finchg(e){const sel=document.getElementById('finsel-'+e.dataset.id);if(!sel)return;const r=finSet(e.dataset.id,sel.value);FUI.msg=r==='ok'?t('fn.m.ok'):r==='cd'?t('fn.m.cd'):r==='cash'?t('fn.m.cash'):r==='veto'?t('fn.m.veto'):'';if(r==='ok')save();render()}});

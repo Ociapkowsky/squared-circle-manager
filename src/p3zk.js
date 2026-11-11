@@ -1,0 +1,24 @@
+// ---- v81: late-game wealth drain + big-money events ----
+const wealthExcess=()=>G.fed.tier>=4?Math.max(0,G.fed.cash-wkRev()*25):0;
+const _infraW=infraWeekly;
+infraWeekly=function(){_infraW();const x=wealthExcess();if(x>0){const d=Math.round(x*.012);G.fed.cash-=d;G.wealthPaid=(G.wealthPaid||0)+d}};
+E('taxaudit2','Kontrola skarbowa','Tax audit','Urząd skarbowy wszczął kontrolę rozliczeń federacji. Możesz zapłacić ugodę ({m}) albo walczyć w sądzie.','The tax office opened an audit. You can settle ({m}) or fight in court.',[['Ugoda ({m})','Settle ({m})'],['Walcz w sądzie','Fight in court']]);
+E('lawsuitbig','Pozew od byłego zawodnika','Ex-wrestler lawsuit','Były zawodnik pozywa federację o zaległe tantiemy. Ugoda kosztuje {m}.','A former wrestler sues for unpaid royalties. A settlement costs {m}.',[['Ugoda ({m})','Settle ({m})'],['Idź do sądu','Go to court']]);
+E('stadiumdeal','Własny stadion','Own stadium','Miasto oferuje budowę stadionu federacji za {m}. Prestiż i stały rozgłos.','The city offers to build the federation its own stadium for {m}. Prestige and lasting buzz.',[['Zbuduj ({m})','Build it ({m})'],['Odmów','Decline']]);
+E('takeover','Oferta przejęcia','Takeover bid','Konglomerat medialny chce wykupić udziały mniejszościowe za dużą premię. Odmowa kosztuje rozgłosem w prasie.','A media conglomerate wants a minority stake at a big premium. Refusing costs some press goodwill.',[['Sprzedaj udziały (+{m})','Sell the stake (+{m})'],['Odmów','Refuse']]);
+E('charitygala','Gala charytatywna','Charity gala','Możesz zorganizować galę charytatywną kosztem {m}. Fani i media to docenią.','You can host a charity gala at a cost of {m}. Fans and media will appreciate it.',[['Zorganizuj ({m})','Host it ({m})'],['Nie teraz','Not now']]);
+E('hqtower','Nowa siedziba','New headquarters','Deweloper proponuje wieżowiec-siedzibę federacji za {m}. Morale personelu skoczy.','A developer proposes a headquarters tower for {m}. Staff morale will soar.',[['Kup ({m})','Buy it ({m})'],['Zostań','Stay put']]);
+Object.assign(D,{'n.ta1b':['Ugoda z urzędem zamknięta.','Settled with the tax office.'],'n.ta2b':['Sąd przyznał Ci rację – bez kary!','Court sided with you – no penalty!'],'n.ta3b':['Sąd przegrany – kara i koszty prawne.','Court lost – penalty and legal fees.'],
+'n.ls1':['Pozew załatwiony ugodą.','Lawsuit settled.'],'n.ls2':['Wygrana w sądzie – reputacja rośnie.','Won in court – reputation rises.'],'n.ls3':['Przegrany proces – wysokie odszkodowanie.','Lost the trial – heavy damages.'],
+'n.st1':['Nowy stadion otwarty – rozgłos rośnie.','The new stadium opens – buzz grows.'],'n.st2':['Stadion odrzucony.','Stadium declined.'],
+'n.to1':['Udziały sprzedane – gotówka wpłynęła, prasa kręci nosem.','Stake sold – cash in, the press grumbles.'],'n.to2':['Oferta przejęcia odrzucona – szacunek w branży.','Takeover refused – industry respect.'],
+'n.cg1':['Gala charytatywna wypaliła – fani zachwyceni.','The charity gala was a hit – fans delighted.'],'n.cg2':['Gala odłożona.','Gala postponed.'],
+'n.hq1':['Nowa siedziba – personel w świetnym nastroju.','New HQ – staff in great spirits.'],'n.hq2':['Zostajecie w starym biurze.','You stay in the old office.']});
+Object.assign(WEV,{
+ async taxaudit2(){const c=bigCash(.04);if(!c)return false;const i=await evx('taxaudit2',{m:money(c)},['1','2'],[false,false]);if(i===0){G.fed.cash-=c;addNews('n.ta1b')}else if(rnd()<.5)addNews('n.ta2b');else{G.fed.cash-=Math.round(c*1.8);addNews('n.ta3b')}return true},
+ async lawsuitbig(){const c=bigCash(.03);if(!c)return false;const i=await evx('lawsuitbig',{m:money(c)},['1','2'],[false,false]);if(i===0){G.fed.cash-=c;addNews('n.ls1')}else if(rnd()<.55){G.fed.pop=clamp(G.fed.pop+.3,2,100);addNews('n.ls2')}else{G.fed.cash-=Math.round(c*2.2);addNews('n.ls3')}return true},
+ async stadiumdeal(){const c=bigCash(.12);if(!c||G.stadium)return false;const i=await evx('stadiumdeal',{m:money(c)},['1','2'],[false,false]);if(i===0){G.fed.cash-=c;G.stadium=1;G.fed.pop=clamp(G.fed.pop+.8,2,100);addNews('n.st1')}else addNews('n.st2');return true},
+ async takeover(){const c=bigCash(.15);if(!c)return false;const i=await evx('takeover',{m:money(c)},['1','2'],[false,false]);if(i===0){G.fed.cash+=c;G.fed.pop=clamp(G.fed.pop-.5,2,100);addNews('n.to1')}else{G.fed.pop=clamp(G.fed.pop+.2,2,100);addNews('n.to2')}return true},
+ async charitygala(){const c=bigCash(.03);if(!c)return false;const i=await evx('charitygala',{m:money(c)},['1','2'],[false,false]);if(i===0){G.fed.cash-=c;G.fed.pop=clamp(G.fed.pop+.4,2,100);mine().forEach(w=>evMood(w,2));addNews('n.cg1')}else addNews('n.cg2');return true},
+ async hqtower(){const c=bigCash(.08);if(!c||G.hqtower)return false;const i=await evx('hqtower',{m:money(c)},['1','2'],[false,false]);if(i===0){G.fed.cash-=c;G.hqtower=1;mine().forEach(w=>evMood(w,6));addNews('n.hq1')}else addNews('n.hq2');return true}
+});

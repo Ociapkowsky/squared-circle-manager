@@ -1,0 +1,12 @@
+// ---- scouting reveals traits; title-linked storylines (texts) ----
+function trScout(){
+ const sc=(G.staff||[]).filter(x=>x.role==='scout');
+ sc.forEach(s=>{if(rnd()<.2+s.lvl*.004){const w=pickR(G.ws.filter(x=>!x.trv&&x.fed!==G.fed.id&&x.fed!=='RET'&&x.fed!=='PRO'));if(w){trOf(w);w.trv=1;if(w.tr&&w.fed==='FA')addNews('n.tr.scout',{w:w.name,x:t('tr.'+w.tr),s:s.name})}}})}
+Object.assign(D,{'n.tr.scout':['Skaut {s}: {w} to „{x}”.','Scout {s}: {w} is “{x}”.']});
+{const A=(k,np,ne,s1,s2)=>{D['ang.'+k+'.t']=[np,ne];[s1,s2].forEach((s,i)=>{const n=i+1;D['ang.'+k+'.'+n+'.t']=[s[0],s[1]];D['ang.'+k+'.'+n+'.b']=[s[2],s[3]];D['ang.'+k+'.'+n+'.1']=[s[4],s[5]];D['ang.'+k+'.'+n+'.2']=[s[6],s[7]]})};
+ A('champ','Ostatnia szansa mistrza','Champion\'s Last Stand',
+  ['Zmierzch panowania','Twilight of a reign','{a} od dawna dzierży pas, ale młody {b} puka coraz głośniej. Czy to ostatnia obrona?','{a} has held the belt for ages, but young {b} knocks ever louder. Could this be the final defence?','Odważnie: {a} deklaruje, że nigdy nie odda pasa','Bold: {a} vows never to give up the belt','Bezpiecznie: kamera pokazuje zmęczenie mistrza','Safe: the camera shows the champion\'s fatigue'],
+  ['Ostatnia prosta','The final stretch','Trybuny dzielą się: jedni wierzą w {a}, inni w {b}. Wielka walka o pas jest nieunikniona.','The stands divide: some believe in {a}, others in {b}. The big title match is inevitable.','Odważnie: {b} atakuje mistrza po gali','Bold: {b} attacks the champion after the show','Bezpiecznie: wspólna konferencja przed walką','Safe: a joint pre-match press conference']);
+ A('chase','Pościg za pasem','Chasing the Belt',
+  ['Obsesja','Obsession','{a} nie myśli o niczym innym niż pas {b}. Każdego wieczoru wraca do tematu.','{a} thinks of nothing but {b}\'s belt. Every night the subject returns.','Odważnie: {a} wyrywa pas na ringu i ucieka','Bold: {a} snatches the belt in the ring and runs','Bezpiecznie: {a} regularnie zgłasza się po walkę','Safe: {a} keeps asking for a title shot'],
+  ['Mistrz kontratakuje','The champion strikes back','{b} nie zamierza oddać pasa bez walki. Fani liczą dni do starcia z {a}.','{b} has no intention of surrendering the belt without a fight. Fans count the days to the clash with {a}.','Odważnie: {b} publicznie upokarza pretendenta','Bold: {b} publicly humiliates the challenger','Bezpiecznie: ostra, ale szanująca się wymiana zdań','Safe: a sharp but respectful exchange'])}
