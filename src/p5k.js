@@ -1,5 +1,16 @@
 /* ===== round 11g: illustrations in event windows (matched by keywords in the event text) ===== */
 const EV_KW=[
+ ['ref',/s.{1,2}dzi|referee/i],
+ ['comm',/komentator|commentator/i],
+ ['ann',/mikrofon|announcer/i],
+ ['coach',/trener|coach/i],
+ ['movie',/film|movie/i],
+ ['album',/singl|album/i],
+ ['strong',/si.{1,2}acz|strongman/i],
+ ['builder',/kulturyst|bodybuild/i],
+ ['influ',/streamer|influenc/i],
+ ['sport',/przerwa mi.{1,2}dzy sezon|off-?season/i],
+ ['local',/w okolicy|local star|in the area/i],
  ['attack',/zamaskowan|napastnik|napad|zasadz|masked|attack|ambush|assault|sabota|run-?in|wtargni|kapturz|hooded/i],
  ['presser',/konferencj|press conference|presser/i],
  ['backarg',/k.{1,2}tni|b.{1,2}jk[aię]|bijatyk|awantur|brawl|scuffle|fistfight|shoving|bar fight|fight (in|at|before|with)/i],
