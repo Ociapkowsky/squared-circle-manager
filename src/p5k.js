@@ -46,6 +46,11 @@ const EV_KW=[
  ['social',/viral|wirusow|w sieci|spo[łl]eczno[śs]ciow|kontrowersyjny wpis|\bmemy|q&a|\bboty\b|b[łl][ąa]d bota|ankiet|petycj|wpis|social media|meme|online/i],
  ['ringdmg',/ring si[ęe] [łl]amie|p[ęe]ka lina|pirotechnik|przeciwpo[żz]ar|burza w dniu|[śs]nie[żz]yca|upa[łl] w hali|problem z hal|nowe maty|zabezpiecze|hala odwo[łl]a|awari|broken ring|snapped rope/i],
  ['tagteam',/sojuszni|partner(a|[óo]w|ami|zy)\b|tag team|tag-team|dru[żz]yn|duet|dream team|para dla kamer|alliance|tag partner/i],
+ ['fans',/\bfan|skand|okrzyk|buczen|dudni|hymn|frekwencj|bojkot|supporters/i],
+ ['rookie',/przes[łl]uchan|pokaz talent|skaut|m[łl]od|rozw[óo]jów|szkol|szkoł|debiut|protegow|trema|cudown|rozkwit|rookie|tryout/i],
+ ['leak',/przeciek|informator|szpieg|informacja po godz|cichy uk[łl]ad|plotk|tabloid|za kulis|gor[ąa]ca wskaz|cynk|podpowied|leak|spy/i],
+ ['entrance',/wej[śs]ci|powr[óo]t|powr[óo]c|motyw|muzyk|orkiestr|entrance|comeback/i],
+ ['party',/impreza|kolacj|[śs]lub|celebryt|na widowni|towarzysk|pizza|zaproszenie na kaw|party|wedding|dinner/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
