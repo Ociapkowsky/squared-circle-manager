@@ -58,6 +58,7 @@ const EV_KW=[
  ['hardcore',/heel|\bshoot\b|krzes[łl]o w ringu|hardcore|krew na masce|nieudana akcja|pomy[łl]ka w choreo|ryzykowny (skok|ruch)|chair shot|botch/i],
  ['travel',/problem z wiz|k[łl]opoty wizow|t[ęe]sknot|t[ęe]skni|zagraniczny zawodnik|z zagranicy|homesick|visa/i],
  ['romance',/zwi[ąa]zk|zazdro[śs][ćc]|nowa znajomo|by[łl]ej|by[łl]ego|randk|mi[łl]o[śs][ćc]|romans|romance|jealous/i],
+ ['vintage',/stara kaseta|pchl|targi|zabytkow|tury[śs]ci|retro|vintage|flea/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
