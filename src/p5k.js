@@ -43,6 +43,7 @@ const EV_KW=[
  ['finisher',/finisher|kick-out|kickout/i],
  ['charity',/charytat|dobroczyn|plenerow|zbi[óo]rka|bieg|charity|outdoor/i],
  ['family',/rodzin|dynasti|dziedzic|krewn|nepotyz|\brodu\b|pa[łl]eczk|nast[ęe]pca|family|dynasty|heir/i],
+ ['social',/viral|wirusow|w sieci|spo[łl]eczno[śs]ciow|kontrowersyjny wpis|\bmemy|q&a|\bboty\b|b[łl][ąa]d bota|ankiet|petycj|wpis|social media|meme|online/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
