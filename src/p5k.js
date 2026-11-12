@@ -40,6 +40,8 @@ const EV_KW=[
  ['mgrfight',/zdrad\w* mened|zak[łl]ad mened|starcie mened|mened[żz]er\w* (zmienia|[żz][ąa]da|naciska|traci|chce drugiego)|zwolni[ćc] mened|mened[żz]er\w* kontra/i],
  ['health',/fizjoter|dietety|rehabilit|suplement|operacj|wstrz[ąa][śs]|lekarz|lekarsk|zastrzyk|oferta kliniki|zas[łl]abni|opieka medycz|przepracow|zdrowotn|wellness|physio|doctor|medical/i],
  ['award',/nagrod|jubileusz|rocznic|plebiscyt|promotor roku|promo roku|award|anniversary/i],
+ ['finisher',/finisher|kick-out|kickout/i],
+ ['charity',/charytat|dobroczyn|plenerow|zbi[óo]rka|bieg|charity|outdoor/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
