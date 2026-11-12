@@ -31,4 +31,4 @@ function hubNavHtml(){const tag=(n,c)=>c?' <span class="tag">'+c+'</span>':'';
  try{if(typeof document!=='undefined'&&!document.getElementById('hubcss')){const s=document.createElement('style');s.id='hubcss';s.textContent='.hubtabs{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 10px}.hubtabs .btn{padding:6px 14px;border-radius:999px;font-size:13px}.hubmore{font-size:12px;margin:-2px 0 12px}.nav .nsep{height:1px;background:currentColor;opacity:.12;margin:8px 6px}@media (max-width:900px){.nav .nsep{display:none}}';document.head.appendChild(s)}}catch(e){}})();
 Object.assign(D,{'h.story':['Fabuła','Storylines'],'h.titles':['Tytuły i gale','Titles & events'],'h.talent':['Zawodnicy','Talent'],'h.team':['Zespół','Team'],'h.biz':['Biznes','Business'],'h.exp':['Ekspansja','Expansion'],'h.world':['Świat','World'],'h.career':['Kariera','Career'],
  'h.more':['Kolejne zakładki odblokują się wraz z rozwojem federacji.','More tabs unlock as your promotion grows.']});
-if(typeof normTexts==='function')normTexts()
+if(typeof normTexts==="function")normTexts();

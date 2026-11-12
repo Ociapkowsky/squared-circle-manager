@@ -44,4 +44,4 @@
  try{if(typeof document!=='undefined'&&!document.getElementById('plcss')){const s=document.createElement('style');s.id='plcss';s.textContent='.plpick{display:flex;flex-wrap:wrap;gap:6px;max-height:190px;overflow:auto;padding:6px;border:1px solid rgba(128,128,128,.3);border-radius:10px}.plpick .pl-b{width:62px;height:46px;padding:3px;border-radius:8px;border:2px solid transparent;background:rgba(128,128,128,.12);cursor:pointer;display:flex;align-items:center;justify-content:center}.plpick .pl-b.txt{width:auto;padding:0 10px;font-size:13px}.plpick .pl-b.on{border-color:var(--gold,#d4213d);background:rgba(212,33,61,.12)}';document.head.appendChild(s)}}catch(e){}
 })();
 Object.assign(D,{'t.o.mainImg':['Płytka główna (obrazek)','Main plate (image)'],'t.o.sideImg':['Płytki boczne (obrazek)','Side plates (image)'],'t.o.imgnone':['Klasyczna','Classic']});
-if(typeof normTexts==='function')normTexts()
+if(typeof normTexts==="function")normTexts();
