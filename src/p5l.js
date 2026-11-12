@@ -4,6 +4,6 @@ const OPTSND={buf:null,loading:false,flag:false};
 function optLoad(c){if(OPTSND.buf||OPTSND.loading||!c)return;OPTSND.loading=true;try{const bin=atob(OPTCLK_SRC.split(',')[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);const p=c.decodeAudioData(u.buffer,b=>{OPTSND.buf=b},()=>{OPTSND.loading=false});if(p&&p.catch)p.catch(()=>{OPTSND.loading=false})}catch(e){OPTSND.loading=false}}
 function optPlay(){const c=sndCtx();if(!c)return false;if(!OPTSND.buf){optLoad(c);return false}
  try{const s=c.createBufferSource();s.buffer=OPTSND.buf;s.playbackRate.value=.97+Math.random()*.06;const g=c.createGain();g.gain.value=.9;s.connect(g);g.connect(SND.master);s.start();return true}catch(e){return false}}
-try{if(typeof window!=='undefined'){window.addEventListener('pointerdown',e=>{OPTSND.flag=!!(e.target&&e.target.closest&&e.target.closest('[data-act="evopt"]'))},true);
+try{if(typeof window!=='undefined'){window.addEventListener('pointerdown',e=>{OPTSND.flag=true},true);
  const _clk=SFX.click;SFX.click=function(){if(!SND.clk)return;if(OPTSND.flag){OPTSND.flag=false;if(sndOk('click',40)&&optPlay())return;}return _clk.apply(this,arguments)};
  window.addEventListener('pointerdown',()=>{try{const c=sndCtx();if(c)optLoad(c)}catch(e){}},{once:true,capture:true})}}catch(e){}
