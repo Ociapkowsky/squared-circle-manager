@@ -31,4 +31,3 @@ Sounds were downloaded from Pixabay and trimmed or normalized for the game. Chec
 
 Illustrations, hall backgrounds and the title image were generated with AI tools (ChatGPT, Gemini, Copilot, Ideogram, Leonardo) from the game author's prompts. All characters are fictional and no real person, company or brand is depicted. Check each tool's terms before any commercial use.
 
-- Ring ropes barrier (ropes.webp): AI-generated original illustration, no real brands or people.
