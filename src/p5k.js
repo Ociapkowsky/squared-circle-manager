@@ -56,6 +56,7 @@ const EV_KW=[
  ['docu',/dokumentaln|dokument o|profil w prasie|reporta[żz]|telefon od stacji|wy[łl][ąa]czno[śs][ćc] dla platf|ksi[ąa][żz]k|oferta wydawnicza|wystawa|panel na konw|sesja zdj[ęe]ciowa|krytyk wylewa|documentary|book/i],
  ['meeting',/niezadowolon|\blider|delegacj|faworyz|narzeka|gwiazda [żz][ąa]da|gwiazda grozi|gwiazda przed[łl]u|ekipa prosi|szafk|gniewny|zazdro[śs][ćc] o awans|dwie gwiazdy|locker room|delegation/i],
  ['hardcore',/heel|\bshoot\b|krzes[łl]o w ringu|hardcore|krew na masce|nieudana akcja|pomy[łl]ka w choreo|ryzykowny (skok|ruch)|chair shot|botch/i],
+ ['travel',/problem z wiz|k[łl]opoty wizow|t[ęe]sknot|t[ęe]skni|zagraniczny zawodnik|z zagranicy|homesick|visa/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
