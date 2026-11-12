@@ -52,6 +52,7 @@ const EV_KW=[
  ['entrance',/wej[śs]ci|powr[óo]t|powr[óo]c|motyw|muzyk|orkiestr|entrance|comeback/i],
  ['party',/impreza|kolacj|[śs]lub|celebryt|na widowni|towarzysk|pizza|zaproszenie na kaw|party|wedding|dinner/i],
  ['owner',/w[łl]a[śs]ciciel|przej[ęe]ci|jastrz|bud[żz]et|fundusz|kontrola finans|roczna ocena|prestiż|komisja etyki|prawnik|\bPPV|ogl[ąa]dalno|przedsprzeda|reklamodawc|umowa z hal|owner|budget/i],
+ ['coop',/wsp[óo]lna gala|wsp[óo]lnej gal|wsp[óo][łl]prac|wymiana|przyjaciel z innej|drugiej federacji|propozycja pokoju|rozejm|zawieszenie broni|szczyt booker|starcie termin|propozycja wymiany|truce|joint show/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
