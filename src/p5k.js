@@ -42,6 +42,7 @@ const EV_KW=[
  ['award',/nagrod|jubileusz|rocznic|plebiscyt|promotor roku|promo roku|award|anniversary/i],
  ['finisher',/finisher|kick-out|kickout/i],
  ['charity',/charytat|dobroczyn|plenerow|zbi[óo]rka|bieg|charity|outdoor/i],
+ ['family',/rodzin|dynasti|dziedzic|krewn|nepotyz|\brodu\b|pa[łl]eczk|nast[ęe]pca|family|dynasty|heir/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
