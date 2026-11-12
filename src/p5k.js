@@ -62,7 +62,7 @@ const EV_KW=[
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
-function evArtFor(txt){if(typeof EVART==='undefined')return '';for(const [k,re] of EV_KW){if(EVART[k]&&re.test(txt))return EVART[k]}return ''}
+function evArtFor(txt){if(typeof EVART==='undefined')return '';for(const [k,re] of EV_KW){if(EVART[k]&&re.test(txt))return EVART[k]}return EVART.gen||''}
 (function(){const css=document.createElement('style');css.textContent='.evart{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:10px;margin:0 0 12px;border:1px solid var(--line)}';document.head.appendChild(css)})();
 (function(){const _om=openModal;openModal=function(h){
  try{if(typeof h==='string'&&h.indexOf('data-act="evopt"')>=0&&h.indexOf('class="evart"')<0&&h.indexOf('<h2>')===0){
