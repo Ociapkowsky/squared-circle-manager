@@ -31,3 +31,5 @@ Sounds were downloaded from Pixabay and trimmed or normalized for the game. Chec
 
 Illustrations, hall backgrounds and the title image were generated with AI tools (ChatGPT, Gemini, Copilot, Ideogram, Leonardo) from the game author's prompts. All characters are fictional and no real person, company or brand is depicted. Check each tool's terms before any commercial use.
 
+
+- Music track 2 (mus2.mp3): "Energetic Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/akcja-energetic-instrumental-628157/ (published 2026-11-01). Note: the track is registered in Pixabay's Content ID system, so videos of the game with this music may get automatic claims.
