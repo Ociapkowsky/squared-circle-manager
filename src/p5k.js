@@ -38,6 +38,7 @@ const EV_KW=[
  ['finale',/fina[łl]\s+feud|stawka fina|feud finale|finale stakes/i],
  ['brand',/brand|\bGM\b|GM-|draft|dwie stacje|wielka gala brand/i],
  ['mgrfight',/zdrad\w* mened|zak[łl]ad mened|starcie mened|mened[żz]er\w* (zmienia|[żz][ąa]da|naciska|traci|chce drugiego)|zwolni[ćc] mened|mened[żz]er\w* kontra/i],
+ ['health',/fizjoter|dietety|rehabilit|suplement|operacj|wstrz[ąa][śs]|lekarz|lekarsk|zastrzyk|oferta kliniki|zas[łl]abni|opieka medycz|przepracow|zdrowotn|wellness|physio|doctor|medical/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
