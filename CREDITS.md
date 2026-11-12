@@ -34,3 +34,4 @@ Illustrations, hall backgrounds and the title image were generated with AI tools
 
 - Music track 2 (mus2.mp3): "Energetic Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/akcja-energetic-instrumental-628157/ (published 2026-11-01). Note: the track is registered in Pixabay's Content ID system, so videos of the game with this music may get automatic claims.
 - Music track 3 (mus3.mp3): "Energetic Sport Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/optymistyczny-energetic-sport-instrumental-630158/ (published 2026-11-09). Also registered in Content ID.
+- Music track 4 (mus4.mp3): "Trap Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/pu%C5%82apka-trap-instrumental-629686/ (published 2026-11-05). Also registered in Content ID.
