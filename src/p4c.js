@@ -128,7 +128,7 @@ function vSettings(){
 function render(){
  if(!hasDoc)return;const app=document.getElementById('app');
  if(!G){app.innerHTML=viewStart();return}
- const V={dash:vDash,roster:vRoster,staff:vStaff,show:vShow,feuds:vFeuds,stables:vStables,titles:vTitles,prizes:vPrizes,cal:vCal,rank:vRank,money:vMoney,world:vWorld,tw:vTw,ppv:vPpv,cup:vCup,inbox:vInbox,board:vBoard,hobby:vHobby,life:vLife,bk:vBk,mg:vMg,gim:vGim,rt:vRt,dy:vDy,emp:vEmp,hold:vHold,career:vCareer,sk:vStreaks,health:vHealth,charts:vCharts,rd:vRd,war:vWar,fin:vFin,tm:vTm,lk:vLk,ct:vCt,sct:vSct,dev:vDev,br:vBr,rel:vRel,infra:vInfra,hof:vHof,fa:vFa,settings:vSettings};
+ const V={dash:vDash,roster:vRoster,staff:vStaff,show:vShow,feuds:vFeuds,stables:vStables,titles:vTitles,prizes:vPrizes,cal:vCal,rank:vRank,money:vMoney,world:vWorld,tw:vTw,ppv:vPpv,cup:vCup,inbox:vInbox,board:vBoard,hobby:vHobby,life:vLife,bk:vBk,mg:vMg,gim:vGim,rt:vRt,dy:vDy,emp:vEmp,hold:vHold,career:vCareer,sk:vStreaks,health:vHealth,charts:vCharts,rd:vRd,war:vWar,fin:vFin,tm:vTm,lk:vLk,ct:vCt,sct:vSct,dev:vDev,br:vBr,rel:vRel,infra:vInfra,hof:vHof,fa:vFa,settings:vSettings};Object.assign(V,window.NEWV||{});
  app.innerHTML=shell(V[G.screen]());
 }
 

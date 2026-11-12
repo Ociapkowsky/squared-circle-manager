@@ -2,14 +2,14 @@
 const HUBS=[
  ['h.story','feuds',['feuds','stables','tm','rd']],
  ['h.titles','titles',['titles','prizes','cup','ppv']],
- ['h.talent','gim',['gim','fin','fa','ct','health','lk','rel']],
- ['h.team','staff',['staff','mg','sct','dev','bk']],
- ['h.biz','money',['money','infra','board','life','hobby']],
+ ['h.talent','gim',['gim','fin','fa','ct','health','lk','rel','bonds']],
+ ['h.team','staff',['staff','mg','sct','dev','bk','train']],
+ ['h.biz','money',['money','infra','board','life','hobby','loan']],
  ['h.exp','br',['br','rt','dy','emp','hold']],
  ['h.world','world',['world','rank','war','tw']],
- ['h.career','hof',['hof','career','charts','sk']]];
+ ['h.career','hof',['hof','career','charts','sk','chron','rpl','season']]];
 /* minimum promotion tier for a tab to be listed (set by eye); the current screen is always listed */
-const NAV_MIN={prizes:2,cup:2,ppv:3,mg:2,sct:2,dev:3,life:2,hobby:2,br:4,rt:3,dy:2,emp:4,hold:5,war:2};
+const NAV_MIN={prizes:2,cup:2,ppv:3,mg:2,sct:2,dev:3,life:2,hobby:2,br:4,rt:3,dy:2,emp:4,hold:5,war:2,loan:2};
 const HUBLAST={};
 function navVis(sc){try{if(G.screen===sc)return true;if(sc==='hobby'&&G.me&&G.me.hobbyOff)return false;return (NAV_MIN[sc]||0)<=(G.fed.tier||1)}catch(e){return true}}
 function hubOf(sc){return HUBS.find(h=>h[2].indexOf(sc)>=0)}
