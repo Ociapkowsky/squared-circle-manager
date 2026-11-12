@@ -16,7 +16,7 @@ function segEnsure(){if(!G.seg){const s={};let tot=0;SEGS.forEach(x=>{const v=.6
 function readyMs(){return (G.card||[]).filter(matchReady)}
 const slotW=(i,n)=>1+(i>=n-2?.5:0)+(i===n-1?.5:0);
 function popsOf(m){return sides(m).A.concat(sides(m).B).map(W).filter(Boolean)}
-function cardSP(){const ms=readyMs();if(ms.length<2)return null;let sw=0,sp=0;ms.forEach((m,i)=>{const w=slotW(i,ms.length),ps=popsOf(m);if(!ps.length)return;let p=avg(ps.map(x=>x.pop));if(m.title)p+=3;sw+=w;sp+=w*p});return sw?sp/sw:null}
+window.cardSP=cardSP;function cardSP(){const ms=readyMs();if(ms.length<2)return null;let sw=0,sp=0;ms.forEach((m,i)=>{const w=slotW(i,ms.length),ps=popsOf(m);if(!ps.length)return;let p=avg(ps.map(x=>x.pop));if(m.title)p+=3;sw+=w;sp+=w*p});return sw?sp/sw:null}
 function segDelivery(){const ms=readyMs(),S=segEnsure(),out={};if(ms.length<2)return null;let sw=0;const fr={},style={};SEGS.forEach(x=>{fr[x[0]]=0});let fam=0,edge=0;
  ms.forEach((m,i)=>{const w=slotW(i,ms.length),ps=popsOf(m);if(!ps.length)return;sw+=w;
   SEGS.forEach(x=>{if(x[1])fr[x[0]]+=w*ps.filter(p=>x[1].indexOf(p.style)>=0).length/ps.length});
