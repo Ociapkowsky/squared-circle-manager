@@ -37,6 +37,7 @@ const EV_KW=[
  ['scandal',/skandal|pozew|policj|nalot|w[łl]amanie|zatrzymani|afera|wyciek|scandal|lawsuit|police|leak/i],
  ['finale',/fina[łl]\s+feud|stawka fina|feud finale|finale stakes/i],
  ['brand',/brand|\bGM\b|GM-|draft|dwie stacje|wielka gala brand/i],
+ ['mgrfight',/zdrad\w* mened|zak[łl]ad mened|starcie mened|mened[żz]er\w* (zmienia|[żz][ąa]da|naciska|traci|chce drugiego)|zwolni[ćc] mened|mened[żz]er\w* kontra/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
