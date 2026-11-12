@@ -29,11 +29,27 @@ const f2s=x=>(x>=0?'+':'−')+String(Math.abs(Math.round(x*100)/100)).replace('.
 const _slot=slotHtml;slotHtml=function(m){let h=_slot.apply(this,arguments);try{if(!matchReady(m))return h;const g=gimFx(m),b=g.best;if(!b||Math.abs(g.v)<.01)return h;
   let chip;if(b.r===2)chip='<span class="tag" style="color:#d6336c" title="'+esc(t('gx.mir'))+'">'+esc(t('gx.mir'))+' '+f2s(g.v)+'★</span>';
   else{const win=b.r===1?b.a:b.b,los=b.r===1?b.b:b.a,kw=b.r===1?b.ka:b.kb,kl=b.r===1?b.kb:b.ka;const why=WHY[kw+'>'+kl];const logical=(b.r===1&&b.win===1)||(b.r===-1&&b.win===-1);
-   chip='<span class="tag" style="color:#2f9e44" title="'+esc(why?(lang==='pl'?why[0]:why[1]):'')+'">⚡ '+esc(t('gx.cnt',{a:giNm(kw),b:giNm(kl)}))+' '+f2s(g.v)+'★'+(b.win!==0?' · '+esc(t(logical?'gx.logic':'gx.upset')):'')+'</span>'}
+   chip='<span class="tag" data-act="gxopen" style="cursor:pointer;color:#2f9e44" title="'+esc(why?(lang==='pl'?why[0]:why[1]):'')+'">⚡ '+esc(t('gx.cnt',{a:giNm(kw),b:giNm(kl)}))+' '+f2s(g.v)+'★'+(b.win!==0?' · '+esc(t(logical?'gx.logic':'gx.upset')):'')+'</span>'}
   const i=h.lastIndexOf('</div>');return h.slice(0,i)+'<div class="row" style="gap:6px;flex-wrap:wrap">'+chip+'</div>'+h.slice(i)}catch(e){return h}};
-const _vg=vGim;vGim=function(){let h=_vg.apply(this,arguments);try{const ks=Object.keys(BEAT);const weak={};ks.forEach(k=>BEAT[k].forEach(x=>{(weak[x]=weak[x]||[]).push(k)}));
-  let p='<div class="card stack"><h3>'+esc(t('gx.title'))+'</h3><div class="mute" style="font-size:13px;max-width:80ch">'+esc(t('gx.sub'))+'</div><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px">';
-  ks.forEach(k=>{p+='<div style="font-size:13px;border:1px solid var(--line,#8884);border-radius:8px;padding:6px 8px"><b>'+esc(giNm(k))+'</b><div><span class="mute">'+esc(t('gx.beats'))+':</span> <span style="color:#2f9e44">'+BEAT[k].map(giNm).join(', ')+'</span></div><div><span class="mute">'+esc(t('gx.weak'))+':</span> <span style="color:#d6336c">'+(weak[k]||[]).map(giNm).join(', ')+'</span></div></div>'});
-  return h+p+'</div></div>'}catch(e){return h}};
+const ICO={monster:'👹',underdog:'🐕',coward:'🐔',veteran:'🎖️',mask:'🎭',patriot:'🦅',menace:'🦹',comedian:'🤡',rebel:'🤘',sadist:'😈',prodigy:'⭐',showman:'🎩',technician:'🧠',cult:'🔮',legend:'👑',enforcer:'🥊'};
+Object.assign(D,{'gx.open':['📖 Ściągawka gimmicków','📖 Gimmick cheat sheet'],'gx.legend':['Wiersz kontruje kolumnę','Row counters column'],'gx.l1':['kontra: wyższa ocena walki','counter: higher match rating'],'gx.l2':['jest kontrowany','gets countered'],'gx.l3':['to samo: nuda','mirror: dull'],'gx.l4':['neutralnie','neutral'],'gx.tip':['Kliknij ikonę lub pole, żeby zobaczyć szczegóły.','Tap an icon or a cell for details.'],'gx.pick':['Wybierz gimmick (ikona po lewej).','Pick a gimmick (icon on the left).']});
+function sheetHtml(){const ks=Object.keys(BEAT);const c=22;
+ let h='<div class="stack" style="gap:8px"><div class="mute" style="font-size:13px;max-width:70ch">'+esc(t('gx.sub'))+'</div>'+
+ '<div class="row" style="gap:10px;flex-wrap:wrap;font-size:12px"><span><b style="color:#2f9e44">▲</b> '+esc(t('gx.l1'))+'</span><span><b style="color:#d6336c">▼</b> '+esc(t('gx.l2'))+'</span><span><b style="color:#8a8a8a">＝</b> '+esc(t('gx.l3'))+'</span><span><b style="opacity:.4">·</b> '+esc(t('gx.l4'))+'</span></div>'+
+ '<div style="overflow-x:auto;max-width:100%"><table style="border-collapse:separate;border-spacing:1px;font-size:11px;table-layout:fixed;width:'+(124+16*(c+2))+'px"><colgroup><col style="width:124px">'+ks.map(()=>'<col style="width:'+(c+1)+'px">').join('')+'</colgroup><tr><td class="mute" style="font-size:11px;white-space:nowrap">'+esc(t('gx.legend'))+'</td>'+ks.map(k=>'<td data-act="gxinfo" data-r="'+k+'" title="'+esc(giNm(k))+'" style="text-align:center;font-size:15px;cursor:pointer;width:'+c+'px">'+ICO[k]+'</td>').join('')+'</tr>';
+ ks.forEach(r=>{h+='<tr><td data-act="gxinfo" data-r="'+r+'" style="white-space:nowrap;cursor:pointer;padding:0;overflow:hidden"><span style="font-size:15px">'+ICO[r]+'</span> <b style="font-size:11px">'+esc(giNm(r))+'</b></td>'+ks.map(k=>{let bg='transparent',tx='<span style="opacity:.3">·</span>',tt=giNm(r)+' / '+giNm(k);
+   if(r===k){bg='#8a8a8a33';tx='＝';tt+=': '+t('gx.l3')}else if(BEAT[r].indexOf(k)>=0){bg='#2f9e4455';tx='<b style="color:#2f9e44">▲</b>';tt=t('gx.cnt',{a:giNm(r),b:giNm(k)})}else if(BEAT[k].indexOf(r)>=0){bg='#d6336c40';tx='<b style="color:#d6336c">▼</b>';tt=t('gx.cnt',{a:giNm(k),b:giNm(r)})}
+   return '<td data-act="gxinfo" data-r="'+r+'" data-c="'+k+'" title="'+esc(tt)+'" style="text-align:center;padding:0;height:'+(c-4)+'px;border-radius:5px;background:'+bg+';cursor:pointer">'+tx+'</td>'}).join('')+'</tr>'});
+ return h+'</table></div><div id="gxinfo" class="note" style="min-height:44px;font-size:13px">'+esc(t('gx.tip'))+'</div></div>'}
+Object.assign(ACT,{gxopen(){openModal('<h2>'+esc(t('gx.title'))+'</h2>'+sheetHtml())},
+ gxinfo(e){const r=e.dataset.r,c=e.dataset.c,el=document.getElementById('gxinfo');if(!el)return;let tx='';
+  const weak=k=>Object.keys(BEAT).filter(x=>BEAT[x].indexOf(k)>=0);
+  if(!c){const g=giDef(r);tx='<b>'+ICO[r]+' '+esc(giNm(r))+'</b> – '+esc(lang==='pl'?g.d[0]:g.d[1])+'<br><span style="color:#2f9e44">▲ '+esc(t('gx.beats'))+': '+BEAT[r].map(giNm).join(', ')+'</span><br><span style="color:#d6336c">▼ '+esc(t('gx.weak'))+': '+weak(r).map(giNm).join(', ')+'</span>'}
+  else if(r===c)tx=esc(t('gx.mir'));
+  else{const a=BEAT[r].indexOf(c)>=0?r:BEAT[c].indexOf(r)>=0?c:null,b=a===r?c:r;
+   if(!a)tx=esc(giNm(r)+' / '+giNm(c)+': '+t('gx.l4'));else{const w=WHY[a+'>'+b];tx='<b>⚡ '+esc(t('gx.cnt',{a:giNm(a),b:giNm(b)}))+'</b>'+(w?'<br>'+esc(lang==='pl'?w[0]:w[1]):'')}}
+  el.innerHTML=tx}});
+const _vg=vGim;vGim=function(){let h=_vg.apply(this,arguments);try{return h+'<div class="card stack"><h3>'+esc(t('gx.title'))+'</h3>'+sheetHtml()+'</div>'}catch(e){return h}};
+const _vs5=vShow;vShow=function(){const h=_vs5.apply(this,arguments);try{if(RUN||(G.summary&&G.showResult))return h;return h+'<div class="row"><button class="btn sm" data-act="gxopen">'+esc(t('gx.open'))+'</button></div>'}catch(e){return h}};
 })();
 if(typeof normTexts==="function")normTexts();
