@@ -3,7 +3,7 @@
 window.NEWV=window.NEWV||{};
 const yr=w=>Math.floor((w-1)/52)+1;
 Object.assign(D,{'nav.chron':['Kronika','Chronicle'],'nav.rpl':['Replaye gal','Show replays'],'nav.season':['Sezon','Season'],
-'ch.title':['Kronika federacji','Federation chronicle'],'ch.sub':['Najważniejsze momenty Twojej federacji w kolejności czasu.','The key moments of your promotion in time order.'],'ch.year':['Rok {y}','Year {y}'],'ch.none':['Na razie pusto. Pierwsze ważne wydarzenia wpadną tu same.','Empty for now. The first big events will land here on their own.'],
+'chr.title':['Kronika federacji','Federation chronicle'],'chr.sub':['Najważniejsze momenty Twojej federacji w kolejności czasu.','The key moments of your promotion in time order.'],'chr.year':['Rok {y}','Year {y}'],'chr.none':['Na razie pusto. Pierwsze ważne wydarzenia wpadną tu same.','Empty for now. The first big events will land here on their own.'],
 'n.rec':['Rekord federacji: gala z oceną {r}★.','Promotion record: a show rated {r}★.'],'n.lowshow':['Gala z oceną {r}★ przejdzie do historii jako wpadka.','A {r}★ show will go down as a flop.'],
 'rp.title':['Replaye gal','Show replays'],'rp.sub':['Najlepsze gale z rozpisanym tempem: co wypadło najlepiej i gdzie był przestój.','Best shows with the pace laid out: what shone and where it dipped.'],'rp.none':['Brak gal do pokazania. Rozegraj kilka gal.','No shows to show. Run a few shows.'],'rp.att':['frekwencja','attendance'],'rp.main':['Main event','Main event'],
 'cl.title':['Wyzwanie tygodnia','Weekly challenge'],'cl.reward':['Nagroda: +{p} popularności i {m}','Reward: +{p} popularity and {m}'],'cl.done':['Wyzwanie wykonane: {c}. Nagroda: +{p} popularności i {m}.','Challenge complete: {c}. Reward: +{p} popularity and {m}.'],'cl.missed':['Wyzwanie niewykonane: {c}','Challenge missed: {c}'],'cl.streak':['Seria wyzwań: {n}','Challenge streak: {n}'],'cl.skip':['Zmień wyzwanie','Reroll'],
@@ -14,8 +14,8 @@ Object.assign(D,{'nav.chron':['Kronika','Chronicle'],'nav.rpl':['Replaye gal','S
 const KEEP={'n.champ':'🏆','n.feudend':'🔥','n.feudend.mw':'🔥','n.tier':'⬆️','n.retire':'👋','n.farewell':'👋','n.tourwin':'🥇','n.prizewin':'💰','n.stnew':'🛡️','n.guest':'⭐','n.mom':'🎤','n.quitbury':'🚪','n.charity':'❤️','n.legend1':'👑','n.anniv1':'🎂','n.rec':'⭐','n.lowshow':'📉','n.award':'🏅','n.turn':'🔄','n.sign':'✍️','n.defend':'🛡️'};
 function chron(k,v,ic){G.chron=G.chron||[];G.chron.unshift({w:G.week,k:k,v:v||{},i:ic||KEEP[k]||'•'});if(G.chron.length>500)G.chron.length=500}
 const _an=addNews;addNews=function(k,v){const r=_an.apply(this,arguments);try{if(KEEP[k]){if(k==='n.defend'&&rnd()>.15)return r;chron(k,v)}}catch(e){}return r};
-NEWV.chron=function(){let h='<div class="top"><div><h2>'+esc(t('ch.title'))+'</h2><div class="mute">'+esc(t('ch.sub'))+'</div></div></div>';const l=G.chron||[];if(!l.length)return h+'<div class="note">'+esc(t('ch.none'))+'</div>';
- let y=0;h+='<div class="card stack" style="gap:0">';l.slice(0,200).forEach(x=>{const yy=yr(x.w);if(yy!==y){y=yy;h+='<div style="font-weight:700;margin:12px 0 4px;color:var(--gold)">'+esc(t('ch.year',{y:y}))+'</div>'}
+NEWV.chron=function(){let h='<div class="top"><div><h2>'+esc(t('chr.title'))+'</h2><div class="mute">'+esc(t('chr.sub'))+'</div></div></div>';const l=G.chron||[];if(!l.length)return h+'<div class="note">'+esc(t('chr.none'))+'</div>';
+ let y=0;h+='<div class="card stack" style="gap:0">';l.slice(0,200).forEach(x=>{const yy=yr(x.w);if(yy!==y){y=yy;h+='<div style="font-weight:700;margin:12px 0 4px;color:var(--gold)">'+esc(t('chr.year',{y:y}))+'</div>'}
   h+='<div style="display:grid;grid-template-columns:54px 24px 1fr;gap:6px;padding:5px 0;border-bottom:1px solid var(--line,#8883);font-size:14px"><span class="mute">W'+x.w+'</span><span>'+x.i+'</span><span>'+esc(t(x.k,x.v))+'</span></div>'});return h+'</div>'};
 /* --- context capture + show hooks --- */
 const CH=['star4','gx','rate35','mefeud','theme','debut','all3','risky','titlemain','sold'];
