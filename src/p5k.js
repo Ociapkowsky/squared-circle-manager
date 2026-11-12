@@ -57,6 +57,7 @@ const EV_KW=[
  ['meeting',/niezadowolon|\blider|delegacj|faworyz|narzeka|gwiazda [żz][ąa]da|gwiazda grozi|gwiazda przed[łl]u|ekipa prosi|szafk|gniewny|zazdro[śs][ćc] o awans|dwie gwiazdy|locker room|delegation/i],
  ['hardcore',/heel|\bshoot\b|krzes[łl]o w ringu|hardcore|krew na masce|nieudana akcja|pomy[łl]ka w choreo|ryzykowny (skok|ruch)|chair shot|botch/i],
  ['travel',/problem z wiz|k[łl]opoty wizow|t[ęe]sknot|t[ęe]skni|zagraniczny zawodnik|z zagranicy|homesick|visa/i],
+ ['romance',/zwi[ąa]zk|zazdro[śs][ćc]|nowa znajomo|by[łl]ej|by[łl]ego|randk|mi[łl]o[śs][ćc]|romans|romance|jealous/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
