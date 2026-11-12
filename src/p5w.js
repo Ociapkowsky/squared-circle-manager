@@ -2,7 +2,7 @@
 const SND_CREDITS=[
  ['Button Clicks','u_xg7ssi08yr'],['Boxing bell dings','cartoon_music'],['Thud Impact Sound SFX','Virtual_Vibes'],
  ['count','Lindsayanng (Freesound)'],['Crowd Cheering in Stadium','vishiv (Wren West)'],['Crowd Booing','DRAGON-STUDIO'],
- ['Writing, Pen, Signature, Paper','Mediaman57 (Freesound)'],['New Notification 012','Universfield'],['Cash Register 1','ksjsbwuil'],['Dry Thunder Rumble','DRAGON-STUDIO']];
+ ['Writing, Pen, Signature, Paper','Mediaman57 (Freesound)'],['New Notification 012','Universfield'],['Cash Register 1','ksjsbwuil'],['Dry Thunder Rumble','DRAGON-STUDIO'],['Phone ring office','TRP (Freesound)']];
 Object.assign(D,{
  'cr.title':['Źródła dźwięku i grafiki','Sound and art credits'],
  'cr.snd':['Dźwięki z Pixabay (licencja treści Pixabay):','Sounds from Pixabay (Pixabay Content License):'],

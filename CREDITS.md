@@ -18,6 +18,7 @@ Sounds were downloaded from Pixabay and trimmed or normalized for the game. Chec
 | New Notification 012 | Universfield | https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-new-notification-012-363675/ | 2025-06-23 |
 | Cash Register 1 | ksjsbwuil | https://pixabay.com/pl/sound-effects/technologia-cash-register-1-513922/ | 2026-04-09 |
 | Dry Thunder Rumble | DRAGON-STUDIO | https://pixabay.com/pl/sound-effects/dry-thunder-rumble-459101/ | 2025-12-31 |
+| Phone ring office | TRP (freesound_community) | https://pixabay.com/pl/sound-effects/technologia-phone-ring-office-77mel-191019-62216/ | 2022-07-12 |
 
 ## Sounds (generated)
 
