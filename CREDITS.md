@@ -20,6 +20,10 @@ Sounds were downloaded from Pixabay and trimmed or normalized for the game. Chec
 | Dry Thunder Rumble | DRAGON-STUDIO | https://pixabay.com/pl/sound-effects/dry-thunder-rumble-459101/ | 2025-12-31 |
 | Phone ring office | TRP (freesound_community) | https://pixabay.com/pl/sound-effects/technologia-phone-ring-office-77mel-191019-62216/ | 2022-07-12 |
 | Camera Shutter | ALEXIS_GAMING_CAM | https://pixabay.com/pl/sound-effects/filmy-i-efekty-specjalne-camera-shutter-346101/ | 2025-05-26 |
+| Metal Hit (chair shot) | Universfield | https://pixabay.com/sound-effects/film-special-effects-metal-hit-153323/ | 2023-06-12 |
+| Table Smash | NeoSpica (freesound_community) | https://pixabay.com/sound-effects/film-special-effects-table-smash-47690/ | 2022-06-21 |
+| Crowd Shocked Reaction | Universfield | https://pixabay.com/sound-effects/people-crowd-shocked-reaction-352766/ | 2025-06-02 |
+| Hit cage | Breviceps (freesound_community) | https://pixabay.com/sound-effects/film-special-effects-hit-cage-45988/ | 2022-06-19 |
 
 ## Sounds (generated)
 
