@@ -36,6 +36,7 @@ const EV_KW=[
  ['persona',/posta[ćc]|maska|maski|image|wizerunek|character|mask|persona/i],
  ['scandal',/skandal|pozew|policj|nalot|w[łl]amanie|zatrzymani|afera|wyciek|scandal|lawsuit|police|leak/i],
  ['finale',/fina[łl]\s+feud|stawka fina|feud finale|finale stakes/i],
+ ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
 function evArtFor(txt){if(typeof EVART==='undefined')return '';for(const [k,re] of EV_KW){if(EVART[k]&&re.test(txt))return EVART[k]}return ''}
