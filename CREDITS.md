@@ -42,3 +42,5 @@ Illustrations, hall backgrounds and the title image were generated with AI tools
 - Music track 3 (mus3.mp3): "Energetic Sport Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/optymistyczny-energetic-sport-instrumental-630158/ (published 2026-11-09). Also registered in Content ID.
 - Music track 4 (mus4.mp3): "Trap Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/pu%C5%82apka-trap-instrumental-629686/ (published 2026-11-05). Also registered in Content ID.
 - Music track 5 (mus5.mp3): "Disco Instrumental" by Sub_Clair, Pixabay Content License — https://pixabay.com/pl/music/dyskoteka-disco-instrumental-626296/ (published 2026-10-29). Also registered in Content ID.
+
+- Belt image plates (main and side plates in the belt designer): AI-generated original illustrations from the game author's prompts, no real brands, logos or people.
