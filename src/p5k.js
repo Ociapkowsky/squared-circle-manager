@@ -51,6 +51,7 @@ const EV_KW=[
  ['leak',/przeciek|informator|szpieg|informacja po godz|cichy uk[łl]ad|plotk|tabloid|za kulis|gor[ąa]ca wskaz|cynk|podpowied|leak|spy/i],
  ['entrance',/wej[śs]ci|powr[óo]t|powr[óo]c|motyw|muzyk|orkiestr|entrance|comeback/i],
  ['party',/impreza|kolacj|[śs]lub|celebryt|na widowni|towarzysk|pizza|zaproszenie na kaw|party|wedding|dinner/i],
+ ['owner',/w[łl]a[śs]ciciel|przej[ęe]ci|jastrz|bud[żz]et|fundusz|kontrola finans|roczna ocena|prestiż|komisja etyki|prawnik|\bPPV|ogl[ąa]dalno|przedsprzeda|reklamodawc|umowa z hal|owner|budget/i],
  ['negot',/podwy[żz]k|agent|negocjac|przed[łl]u[żz]eni|zagraniczna oferta|stawk[aęi] za wyst|klauzul|umowa zaraz|odnowieni|licytacj|opcja federacji|gwarancja miejsca|wyp[łl]ata z ubezp|raise|negotiat|extension|agent/i],
  ['manager',/menad[żz]er|manager/i]
 ];
