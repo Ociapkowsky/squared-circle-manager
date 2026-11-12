@@ -5,6 +5,6 @@ const PHONEB={b:null,ld:false};
 function phoneLoad(c){if(PHONEB.ld||!c)return;PHONEB.ld=true;try{const bin=atob(PHONE_SRC.split(',')[1]),u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);const p=c.decodeAudioData(u.buffer,b=>{PHONEB.b=b},()=>{});if(p&&p.catch)p.catch(()=>{})}catch(e){}}
 SFX.phone=function(vol){try{const c=sndCtx();if(!c||!sndOk('phone',2500))return;phoneLoad(c);if(!PHONEB.b)return;const s=c.createBufferSource();s.buffer=PHONEB.b;const g=c.createGain();g.gain.value=vol||.55;s.connect(g);g.connect(SND.master);s.start()}catch(e){}};
 (function(){const _om=openModal;openModal=function(h){const r=_om.apply(this,arguments);
-  try{if(typeof h==='string'&&h.indexOf('data-act="evopt"')>=0){const mt=h.match(/<h2>(.*?)<\/h2>/);if(mt&&/[łl]owca g[łl][óo]w|headhunter|telefon od|a call from/i.test(mt[1]))setTimeout(()=>sPlay('phone'),250)}}catch(e){}
+  try{if(typeof h==='string'&&h.indexOf('data-act="evopt"')>=0){const mt=h.match(/<h2>(.*?)<\/h2>/);if(mt&&/[łl]owca g[łl][óo]w|headhunter|telefon od|a call from|agent|podkup|podbiera men|poach|oferta od konkurencji|competitor offer|oferta rywala|rival offer|chce do ciebie|wants in|oferta konsultingu|consulting offer/i.test(mt[1]))setTimeout(()=>sPlay('phone'),250)}}catch(e){}
   return r};
  try{if(typeof window!=='undefined')window.addEventListener('pointerdown',()=>{try{const c=sndCtx();if(c)phoneLoad(c)}catch(e){}},{once:true,capture:true})}catch(e){}})();
