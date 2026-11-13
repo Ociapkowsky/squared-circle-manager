@@ -53,5 +53,13 @@ const _shp=shp;shp=function(k,cx,cy,rx,ry,ex){
 const _tc3=tdCreator;tdCreator=function(){let h=_tc3.apply(this,arguments);try{const d=tdraft(),pl=PLATE[d.plate]||PLATE.gold;
   ['mainShape','sideShape'].forEach(k=>{const re=new RegExp('<button class="txt( on)?" data-act="tdset" data-k="'+k+'" data-v="([a-z0-9]+)">([^<]*)</button>','g');
    h=h.replace(re,(m,on,v,lab)=>'<button class="pl-b shp'+(on||'')+'" data-act="tdset" data-k="'+k+'" data-v="'+v+'" title="'+lab+'" aria-label="'+lab+'"><svg viewBox="0 0 44 32" width="100%" height="100%" preserveAspectRatio="xMidYMid meet">'+shp(v,22,16,k==='sideShape'?9:17,k==='sideShape'?13:13,'fill="'+pl[0]+'" stroke="'+pl[1]+'" stroke-width="2"')+'</svg></button>')})}catch(e){}return h};
+/* prestige: gold stars ABOVE the belt instead of red dots under the plate */
+(function(){const _b3=belt;belt=function(tt,w){let s=_b3.apply(this,arguments);try{
+  s=s.replace(/<circle cx="[\d.]+" cy="(?:33|50)" r="2.8" fill="#d83a3a" stroke="#fff" stroke-width="\.7"\/>/g,'');
+  const p=clamp(Math.round(prestOf(tt)),1,5);let st='';
+  for(let k=0;k<p;k++){const cx=80+(k-(p-1)/2)*10,cy=-4.2,pts=[];for(let i=0;i<10;i++){const a=i/10*Math.PI*2-Math.PI/2,r=i%2?1.7:4;pts.push((cx+Math.cos(a)*r).toFixed(2)+','+(cy+Math.sin(a)*r+.3).toFixed(2))}
+   st+='<polygon points="'+pts.join(' ')+'" fill="#f5c542" stroke="#8a6200" stroke-width=".6" stroke-linejoin="round"/>'}
+  s=s.replace(/viewBox="0 0 160 66" width="(\d+)" height="(\d+)"/,(m,W,H)=>'viewBox="0 -9 160 75" width="'+W+'" height="'+Math.round(+W*75/160)+'"');
+  s=s.replace('</svg>',st+'</svg>')}catch(e){}return s}})();
 })();
 if(typeof normTexts==="function")normTexts();
