@@ -79,6 +79,7 @@
   try{const r=RINGS.get(m);if(r){if(r._mo)r._mo.disconnect();const fin0=r.dataset.fin;m.finish=res.finish||m.finish;
    r.dataset.k='';setWinner(r,m,oc.wi);if(res.finish==='draw'){r.dataset.wn='d'}
    if(tt&&held0&&!mcSame(held0,tt.holders))r.dataset.ch='1';try{REPLAYS.push({name:vsText(m),m:Object.assign({},m,{finish:res.finish||m.finish}),tm:mcTeams(m),ffa:r.classList.contains('ffa'),big:r.classList.contains('big'),held0:held0?held0.slice():null,tt:!!tt,wi:oc.wi.slice(),fin:res.finish||'clean',ch:!!r.dataset.ch,dx:r.dataset.x,dv:r.dataset.v,dpv:r.dataset.pv,iron:r.classList.contains('iron')})}catch(e){}
+   try{const hurt=oc.wi.concat(oc.li||[]).filter(id=>{const w=W(id);return w&&w.injury>0});if(hurt.length)setTimeout(()=>hurtScene(r,hurt),2300)}catch(e){}
    setTimeout(()=>{phase(r,5);RINGS.delete(m);OCS.delete(m);LASTHP.delete(m);setTimeout(()=>r.querySelectorAll('.rgguest').forEach(g=>g.remove()),3000)},0)}}catch(e){}return h};
  Object.assign(ACT,{ringtog(){G.noring=!G.noring;try{save()}catch(e){}const l=document.getElementById('live');if(l)l.classList.toggle('noring',!!G.noring);const b=document.getElementById('rgtog');if(b)b.textContent=t(G.noring?'rg.off':'rg.on')}});
  /* sound buttons during a running show must not re-render the screen (it would restart the ring animation) */
@@ -244,4 +245,13 @@
  try{let s=document.getElementById('rgcss');if(!s){s=document.createElement('style');s.id='rgcss';document.head.appendChild(s)}s.textContent=css}catch(e){}
 })();
 ;try{const _rsz=runShow;runShow=async function(){const r=await _rsz.apply(this,arguments);try{if(G&&G.summary&&G.showResult&&document.getElementById('live')&&!document.querySelector('[data-act="rgreplay"]'))render()}catch(e){}return r}}catch(e){}
+;
+const hurtScene=(r,ids)=>{if(!document.body.contains(r)||r.classList.contains('hurt')||(typeof RUN!=='undefined'&&RUN&&RUN.fast))return;r.classList.add('hurt');
+ ids.forEach(id=>{const g=r.querySelector('.rgd[data-id="'+id+'"]');if(g)g.classList.add('hurtw')});
+ const sv=r.querySelector('svg');if(!sv)return;
+ const NS='http://www.w3.org/2000/svg';const g=document.createElementNS(NS,'g');g.setAttribute('class','rgstr');
+ g.innerHTML='<rect x="-34" y="112" width="30" height="5" rx="2" fill="#e8e8e8"/><rect x="-34" y="116" width="30" height="2" fill="#555"/><circle cx="-30" cy="120" r="2.2" fill="#222"/><circle cx="-8" cy="120" r="2.2" fill="#222"/><rect x="-24" y="108" width="12" height="4" rx="2" fill="#d83a3a"/><text x="-18" y="97" font-size="11" fill="#d83a3a" text-anchor="middle" font-weight="900">✚</text>';
+ sv.appendChild(g);try{sPlay('thud');setTimeout(()=>sPlay('tap'),900)}catch(e){}
+ setTimeout(()=>g.remove(),6500)};
+try{const st=document.createElement('style');st.textContent='.rgstr{animation:rgstr 4.2s ease-in-out both}@keyframes rgstr{0%{transform:translateX(0)}35%,70%{transform:translateX(178px)}100%{transform:translateX(360px)}}.rgd.hurtw .rgi{filter:saturate(.5)}.rg.hurt .rgd.hurtw .rgw{transform:translateY(8px) rotate(calc(var(--s)*-88deg))!important}';document.head.appendChild(st)}catch(e){}
 if(typeof normTexts==="function")normTexts();
