@@ -4,17 +4,17 @@ const HUBS=[
  ['h.titles','titles',['titles','prizes','cup','ppv']],
  ['h.talent','gim',['gim','fin','fa','ct','health','lk','rel','bonds']],
  ['h.team','staff',['staff','mg','sct','dev','bk','train']],
- ['h.biz','money',['money','infra','board','life','hobby','loan']],
+ ['h.biz','money',['money','infra','board','life','hobby','cmk','loan']],
  ['h.exp','br',['br','rt','dy','emp','hold']],
  ['h.world','world',['world','rank','war','tw']],
  ['h.career','hof',['hof','career','charts','sk','chron','rpl','season']]];
 /* minimum promotion tier for a tab to be listed (set by eye); the current screen is always listed */
-const NAV_MIN={prizes:2,cup:2,ppv:3,mg:2,sct:2,dev:3,life:2,hobby:2,br:4,rt:3,dy:2,emp:4,hold:5,war:2,loan:2};
+const NAV_MIN={prizes:2,cup:2,ppv:3,mg:2,sct:2,dev:3,life:2,hobby:2,cmk:2,br:4,rt:3,dy:2,emp:4,hold:5,war:2,loan:2};
 const HUBLAST={};
-function navVis(sc){try{if(G.screen===sc)return true;if(sc==='hobby'&&G.me&&G.me.hobbyOff)return false;return (NAV_MIN[sc]||0)<=(G.fed.tier||1)}catch(e){return true}}
+function navVis(sc){try{if(G.screen===sc)return true;if((sc==='hobby'||sc==='cmk')&&G.me&&G.me.hobbyOff)return false;return (NAV_MIN[sc]||0)<=(G.fed.tier||1)}catch(e){return true}}
 function hubOf(sc){return HUBS.find(h=>h[2].indexOf(sc)>=0)}
 function hubTabsHtml(){try{const h=hubOf(G.screen);if(!h)return '';const vis=h[2].filter(navVis);if(vis.length<2)return '';
-  const locked=h[2].some(s=>!navVis(s)&&!(s==='hobby'&&G.me&&G.me.hobbyOff));
+  const locked=h[2].some(s=>!navVis(s)&&!((s==='hobby'||s==='cmk')&&G.me&&G.me.hobbyOff));
   return '<div class="hubtabs" role="tablist">'+vis.map(s=>'<button class="btn'+(G.screen===s?' gold':'')+'" role="tab" aria-selected="'+(G.screen===s)+'" data-act="nav" data-v="'+s+'">'+t('nav.'+s)+(s==='tw'&&twNew()?' <span class="tag">'+twNew()+'</span>':'')+'</button>').join('')+'</div>'+(locked?'<div class="mute hubmore">'+t('h.more')+'</div>':'')}catch(e){return ''}}
 function hubNavHtml(){const tag=(n,c)=>c?' <span class="tag">'+c+'</span>':'';
   const btn=(sc,label,ic,extra,on)=>'<button data-act="nav" data-v="'+sc+'" class="'+(on?'on':'')+'">'+navIc(ic)+'<span>'+label+'</span>'+(extra||'')+'</button>';
