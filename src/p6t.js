@@ -20,16 +20,17 @@ NEWV.chron=function(){let h='<div class="top"><div><h2>'+esc(t('chr.title'))+'</
 /* --- context capture + show hooks --- */
 const CH=['star4','gx','rate35','mefeud','theme','debut','all3','risky','titlemain','sold'];
 const chk={star4:(s,c)=>s.out.some(o=>o.stars>=4),gx:(s,c)=>c.gx>=1&&s.rating>=3,rate35:(s,c)=>s.rating>=3.5,mefeud:(s,c)=>c.meFeud&&c.lastStars>=3.5,theme:(s,c)=>!!c.theme&&s.rating>=3.5,debut:(s,c)=>c.debut.some((d,i)=>d&&s.out.find(o=>o.pos===i)&&s.out.find(o=>o.pos===i).stars>=3.5),all3:(s,c)=>s.out.filter(o=>o.pos!=null).every(o=>o.stars>=3),risky:(s,c)=>c.risky&&s.rating>=3.5,titlemain:(s,c)=>c.meTitle&&c.lastStars>=3.5,sold:(s,c)=>s.sold&&s.rating>=3};
-function newChal(){let k;do{k=CH[Math.floor(rnd()*CH.length)]}while(G.chal&&G.chal.k===k&&CH.length>1);G.chal={k:k,wk:G.week,streak:(G.chal&&G.chal.streak)||0}}
+function fixOld(){try{if(G.chal&&G.chal.end==null&&G.chal.streak!=null)G.chal=null}catch(e){}}
+function newChal(){let k;do{k=CH[Math.floor(rnd()*CH.length)]}while(G.wch&&G.wch.k===k&&CH.length>1);G.wch={k:k,wk:G.week,streak:(G.wch&&G.wch.streak)||0}}
 function seaEnsure(){if(!G.sea){const p0={};mine().forEach(w=>{p0[w.id]=w.pop});G.sea={y:yr(G.week),shows:[],matches:[],wr:{},p0:p0}}return G.sea}
-const _fs3=finishShow;finishShow=function(out){let ctx=null;try{const ms=(G.card||[]).filter(matchReady);ctx={parts:ms.map(m=>sides(m).A.concat(sides(m).B)),gx:ms.filter(m=>{const g=gimFx(m);return g.best&&g.v>.2}).length,theme:G.theme,risky:ms.some(m=>m.risk===2),meFeud:ms.length&&!!feudOf(ms[ms.length-1]),meTitle:ms.length&&!!ms[ms.length-1].title,debut:ms.map(m=>sides(m).A.concat(sides(m).B).some(i=>W(i)&&W(i).pop<25)),vs:ms.map(m=>vsText(m)),tt:ms.map(m=>m.title?titleName(titleOf(m.title)||{}):'')}}catch(e){}
+const _fs3=finishShow;finishShow=function(out){fixOld();let ctx=null;try{const ms=(G.card||[]).filter(matchReady);ctx={parts:ms.map(m=>sides(m).A.concat(sides(m).B)),gx:ms.filter(m=>{const g=gimFx(m);return g.best&&g.v>.2}).length,theme:G.theme,risky:ms.some(m=>m.risk===2),meFeud:ms.length&&!!feudOf(ms[ms.length-1]),meTitle:ms.length&&!!ms[ms.length-1].title,debut:ms.map(m=>sides(m).A.concat(sides(m).B).some(i=>W(i)&&W(i).pop<25)),vs:ms.map(m=>vsText(m)),tt:ms.map(m=>m.title?titleName(titleOf(m.title)||{}):'')}}catch(e){}
  const r=_fs3.apply(this,arguments);
  try{const s=G.summary;if(!s||!s.out||!ctx)return r;const mo=s.out.filter(o=>o.pos!=null);ctx.lastStars=mo.length?mo[mo.length-1].stars:0;
   const wk=G.week-1;
   // challenge
-  if(!G.chal)newChal();const c=G.chal;let ok=false;try{ok=chk[c.k](s,ctx)}catch(e){}
+  if(!G.wch)newChal();const c=G.wch;let ok=false;try{ok=chk[c.k](s,ctx)}catch(e){}
   const rp=.4,rm=Math.round(600+G.fed.pop*50);
-  if(ok){G.fed.pop=clamp(G.fed.pop+rp,2,100);G.fed.cash+=rm;c.streak=(c.streak||0)+1;G.chalDone=(G.chalDone||0)+1;s.chal={k:c.k,ok:1,m:rm,p:rp}}else{c.streak=0;s.chal={k:c.k,ok:0}}
+  if(ok){G.fed.pop=clamp(G.fed.pop+rp,2,100);G.fed.cash+=rm;c.streak=(c.streak||0)+1;G.chalDone=(G.chalDone||0)+1;s.wchal={k:c.k,ok:1,m:rm,p:rp}}else{c.streak=0;s.wchal={k:c.k,ok:0}}
   newChal();
   // records
   const best=G.recBest||0;if(s.rating>=4.25&&s.rating>best){G.recBest=s.rating;chron('n.rec',{r:f2(s.rating)},'⭐')}else if(s.rating<=1.5)chron('n.lowshow',{r:f2(s.rating)},'📉');
@@ -42,9 +43,9 @@ const _fs3=finishShow;finishShow=function(out){let ctx=null;try{const ms=(G.card
    ids.forEach(i=>{const w=W(i);if(!w||w.fed!==G.fed.id)return;const q=S.wr[i]=S.wr[i]||{n:w.name,wins:0,pts:0};q.n=w.name;q.pts+=.2*o.stars;if(wn.indexOf(i)>=0){q.wins++;q.pts+=1+o.stars/2}})});
   save()}catch(e){}return r};
 /* --- views --- */
-const _vs7=vShow;vShow=function(){const h=_vs7.apply(this,arguments);try{if(RUN)return h;if(G.summary&&G.showResult)return h;if(!G.chal)newChal();const c=G.chal;
+const _vs7=vShow;vShow=function(){fixOld();const h=_vs7.apply(this,arguments);try{if(RUN)return h;if(G.summary&&G.showResult)return h;if(!G.wch)newChal();const c=G.wch;
   return h+'<div class="card stack" style="gap:6px;border-left:3px solid var(--gold,#c9a227)"><div class="row spread"><b>🎯 '+esc(t('cl.title'))+'</b><span class="mute" style="font-size:13px">'+esc(t('cl.streak',{n:c.streak||0}))+'</span></div><div>'+esc(t('cl.'+c.k))+'</div><div class="mute" style="font-size:13px">'+esc(t('cl.reward',{p:'0,4',m:money(Math.round(600+G.fed.pop*50))}))+'</div></div>'}catch(e){return h}};
-const _vsum3=vSummary;vSummary=function(){let h=_vsum3.apply(this,arguments);try{const c=G.summary&&G.summary.chal;if(!c)return h;
+const _vsum3=vSummary;vSummary=function(){let h=_vsum3.apply(this,arguments);try{const c=G.summary&&G.summary.wchal;if(!c)return h;
   const l='<div class="card"><b>🎯 '+esc(c.ok?t('cl.done',{c:t('cl.'+c.k),p:'0,4',m:money(c.m)}):t('cl.missed',{c:t('cl.'+c.k)}))+'</b></div>';const key='<div class="card stack"><h3>'+t('d.news')+'</h3>';const i=h.lastIndexOf(key);return i<0?h+l:h.slice(0,i)+l+h.slice(i)}catch(e){return h}};
 NEWV.rpl=function(){let h='<div class="top"><div><h2>'+esc(t('rp.title'))+'</h2><div class="mute">'+esc(t('rp.sub'))+'</div></div></div>';const l=G.rpl||[];if(!l.length)return h+'<div class="note">'+esc(t('rp.none'))+'</div>';
  return h+'<div class="grid g2">'+l.map(x=>'<div class="card stack"><div class="row spread"><b>W'+x.w+' · '+starsHtml(x.rating)+' '+f2(x.rating)+'</b><span class="mute" style="font-size:13px">'+esc(t('rp.att'))+' '+num(x.att)+' / '+num(x.cap)+' · '+money(x.rev)+'</span></div>'+
