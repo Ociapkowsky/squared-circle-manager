@@ -59,7 +59,7 @@
    if(tt&&held0&&!mcSame(held0,tt.holders))r.dataset.ch='1';
    setTimeout(()=>{phase(r,5);RINGS.delete(m);OCS.delete(m)},0)}}catch(e){}return h};
  Object.assign(ACT,{ringtog(){G.noring=!G.noring;try{save()}catch(e){}const l=document.getElementById('live');if(l)l.classList.toggle('noring',!!G.noring);const b=document.getElementById('rgtog');if(b)b.textContent=t(G.noring?'rg.off':'rg.on')}});
- const _r=render;render=function(){const r=_r.apply(this,arguments);try{if(RUN&&!document.getElementById('rgtog')){const f=document.querySelector('[data-act="fast"]');if(f)f.insertAdjacentHTML('beforebegin','<button class="btn sm" id="rgtog" data-act="ringtog">'+esc(t(G.noring?'rg.off':'rg.on'))+'</button> ')}}catch(e){}return r};
+ const _r=render;render=function(){let old=null;try{if(RUN&&RUN.started)old=document.getElementById('live')}catch(e){}const r=_r.apply(this,arguments);try{if(old){const nw=document.getElementById('live');if(nw&&nw!==old)nw.replaceWith(old)}}catch(e){}try{if(RUN&&!document.getElementById('rgtog')){const f=document.querySelector('[data-act="fast"]');if(f)f.insertAdjacentHTML('beforebegin','<button class="btn sm" id="rgtog" data-act="ringtog">'+esc(t(G.noring?'rg.off':'rg.on'))+'</button> ')}}catch(e){}return r};
  /* ---------- css ---------- */
  const K=(n,frames)=>'@keyframes '+n+'{'+frames+'}';
  const css=[
