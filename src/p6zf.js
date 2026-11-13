@@ -78,7 +78,7 @@
    setTimeout(()=>{phase(r,5);RINGS.delete(m);OCS.delete(m);LASTHP.delete(m);setTimeout(()=>r.querySelectorAll('.rgguest').forEach(g=>g.remove()),3000)},0)}}catch(e){}return h};
  Object.assign(ACT,{ringtog(){G.noring=!G.noring;try{save()}catch(e){}const l=document.getElementById('live');if(l)l.classList.toggle('noring',!!G.noring);const b=document.getElementById('rgtog');if(b)b.textContent=t(G.noring?'rg.off':'rg.on')}});
  /* sound buttons during a running show must not re-render the screen (it would restart the ring animation) */
- try{const qsRefresh=()=>{const q=document.querySelector('.qs');if(q)q.outerHTML=sndQuick()};
+ try{const qsRefresh=()=>{const q=document.querySelector('.qs');if(!q)return;document.querySelectorAll('.qm').forEach(e=>e.remove());q.outerHTML=sndQuick()};
   ['sndtoggle','sndclk'].forEach(k=>{const o=ACT[k];ACT[k]=function(){if(RUN&&RUN.started&&document.getElementById('live')){if(k==='sndtoggle'){SND.on=!SND.on;sndSave();sndCtx();if(SND.on)sPlay('pop')}else{SND.clk=!SND.clk;sndSave();if(SND.clk)sPlay('click')}qsRefresh();return}return o.apply(this,arguments)}})}catch(e){}
  const _r=render;render=function(){let old=null;try{if(RUN&&RUN.started)old=document.getElementById('live')}catch(e){}const r=_r.apply(this,arguments);try{if(old){const nw=document.getElementById('live');if(nw&&nw!==old)nw.replaceWith(old)}}catch(e){}try{if(RUN&&!document.getElementById('rgtog')){const f=document.querySelector('[data-act="fast"]');if(f)f.insertAdjacentHTML('beforebegin','<button class="btn sm" id="rgtog" data-act="ringtog">'+esc(t(G.noring?'rg.off':'rg.on'))+'</button> ')}}catch(e){}return r};
 
