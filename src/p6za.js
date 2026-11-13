@@ -39,7 +39,7 @@ const sc=()=>TCG_TM[clamp(G.fed.tier||1,1,5)-1];
 const KF={world:1,second:.8,tag:.72};
 function hashN(s){let h=0;for(let i=0;i<s.length;i++)h=(h*31+s.charCodeAt(i))>>>0;return h}
 function fedPop(id){if(id===G.fed.id)return G.fed.pop;const r=(G.rivals||[]).find(x=>x.id===id);if(r)return r.pop;const f=(PACK.feds||[]).find(x=>x.id===id);return f?f.pop:30}
-function beltSnap(tt){return {kind:tt.kind,teams:tt.teams,strap:tt.strap,strap2:tt.strap2,plate:tt.plate,pat:tt.pat,mainShape:tt.mainShape,sideShape:tt.sideShape,sideN:tt.sideN,mainEmb:tt.mainEmb,sideEmb:tt.sideEmb,mainImg:tt.mainImg,sideImg:tt.sideImg,name:titleName(tt)}}
+function beltSnap(tt){return {kind:tt.kind,teams:tt.teams,strap:tt.strap,strap2:tt.strap2,plate:tt.plate,pat:tt.pat,mainShape:tt.mainShape,sideShape:tt.sideShape,sideN:tt.sideN,mainEmb:tt.mainEmb,sideEmb:tt.sideEmb,mainImg:tt.mainImg,sideImg:tt.sideImg,txt:tt.txt,name:titleName(tt)}}
 function beltPool(){const out=[];const plates=['gold','silver','bronze','black','blue','red'],pats=['plain','stripe','dots'];
  (PACK.feds||[]).forEach(f=>{const own=f.id===G.fed.id;const base=own?G.titles.filter(x=>x.holders!==undefined):defaultTitles(f.tier||1);
   base.forEach(tt=>{let snap;if(own)snap=beltSnap(tt);else{const h=hashN(f.id+tt.id);snap=beltSnap(Object.assign({},tt,{name:(f.short||f.name)+' '+t(tt.kind==='world'?'t.world':tt.kind==='second'?'t.second':'t.tag'),plate:plates[h%plates.length],strap2:f.color||'#f2c94c',pat:pats[(h>>3)%pats.length]}))}
