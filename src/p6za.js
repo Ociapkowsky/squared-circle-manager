@@ -11,7 +11,7 @@ Object.assign(D,{'nav.cmk':['Rynek kart','Card market'],
 'cm.lstrow':['cena {p} · jeszcze {w} tyg.','ask {p} · {w} wk left'],'cm.cancel':['Wycofaj','Withdraw'],
 'cm.off':['Oferty sprzedawców','Dealer offers'],'cm.buy':['Kup {m}','Buy {m}'],'cm.deal':['OKAZJA','DEAL'],
 'cm.offnone':['Dziś nic ciekawego. Wróć za parę tygodni.','Nothing interesting today. Check back in a few weeks.'],
-'cm.bp':['Paczka z pasami federacji','Federation belt pack'],'cm.bps':['4 karty z pasami federacji. Im większa federacja i ważniejszy tytuł, tym rzadsza karta.','4 federation belt cards. The bigger the federation and the more important the title, the rarer the card.'],
+'cm.bpx':['Paczka z pasami federacji','Federation belt pack'],'cm.bps':['4 karty z pasami federacji. Im większa federacja i ważniejszy tytuł, tym rzadsza karta.','4 federation belt cards. The bigger the federation and the more important the title, the rarer the card.'],
 'cm.bpbuy':['Kup paczkę {m}','Buy pack {m}'],'cm.bpopen':['Paczka z pasami','Belt pack'],
 'cm.sg':['Podpis','Signed'],'cm.sgfound':['Wyjątkowo rzadka karta z podpisem zawodnika „{n}"!','An exceptionally rare card signed by "{n}"!'],
 'cm.q.auc':['Za ile wystawić kartę „{n}"? Wartość rynkowa: {v}. Prowizja serwisu 5%. Aukcja trwa do 4 tygodni.','At what price should "{n}" go up? Market value: {v}. Platform fee 5%. The auction runs up to 4 weeks.'],
@@ -26,6 +26,9 @@ Object.assign(D,{'nav.cmk':['Rynek kart','Card market'],
 'cm.ev1.o1':['Sprzedaj','Sell'],'cm.ev1.o2':['Zostaw w kolekcji','Keep it'],
 'cm.ev2.t':['Anonimowy kolekcjoner','Anonymous collector'],'cm.ev2.b':['Ktoś pisze do Ciebie, że chce kupić „{n}" za {m}, czyli sporo ponad rynek.','Someone messages you offering {m} for "{n}", well above market.'],
 'cm.ev2.o1':['Sprzedaj','Sell'],'cm.ev2.o2':['Odmów','Decline']});
+Object.assign(D,{'tcg.p.std':['Paczka zwykła','Standard pack'],'tcg.p.pre':['Paczka gwarantowana (min. 1 niebieska)','Guaranteed pack (min. 1 blue)'],
+'tcg.odds':['Zwykła paczka to 5 losowych kart. Gwarantowana ma co najmniej jedną niebieską (rzadką) lub lepszą. W każdej paczce trafiają się zawodnicy, menedżerowie i pasy federacji, a bardzo rzadko karta z podpisem.','A standard pack is 5 random cards. The guaranteed pack has at least one blue (rare) card or better. Every pack can hold wrestlers, managers and federation belts, and very rarely a signed card.']});
+const _vhM=vHobby;vHobby=function(){let h=_vhM.apply(this,arguments);try{h=h.replace(/<button[^>]*data-k="col"[^>]*>.*?<\/button>/,'').replace(/<div class="row" style="gap:8px;flex-wrap:wrap"><select id="hfed"[\s\S]*?<\/select><button[^>]*data-k="fed"[^>]*>.*?<\/button><\/div>/,'').replace(/<button[^>]*data-k="mgr"[^>]*>.*?<\/button>/,'')}catch(e){}return h};
 const GRM={10:2.5,9:1.6,8:1.2,7:1,6:.7,5:.45},FOILX=6,SIGX=22,CD=12;
 const AUC=[[.85,'cm.q.o1'],[1,'cm.q.o2'],[1.3,'cm.q.o3'],[1.7,'cm.q.o4']];
 const SGP={std:.0015,fed:.0015,pre:.004,col:.012};
@@ -82,10 +85,14 @@ function mkOffers(){const pool=tcgPool(null);if(pool.length<5)return[];const out
   const w=pickR(pool);if(used.has(w.id))continue;used.add(w.id);const sig=roll>.96,foil=!sig&&rnd()<.3,deal=rnd()<.25;const cd={id:w.id,n:w.name,f:w.fed,r:tcgRar(w),l:w.look,c:w.country,g:w.g||'m',p:Math.round(w.pop||0),foil};
   const v=valueOf(cd,foil,0,sig);out.push({src:sig?'s':'w',card:cd,foil,sig,deal,price:Math.max(10,Math.round(v*(deal?.85:1.3)/5)*5)})}return out}
 /* ---------- signed pulls from packs ---------- */
-let pend=[];
-const _tdr=tcgDraw;tcgDraw=function(kind){const out=_tdr.apply(this,arguments);pend=[];try{const ch=SGP[kind]||0;out.forEach((c,i)=>{if(ch&&W(c.id)&&rnd()<ch)pend.push(i)})}catch(e){}return out};
-const _top=tcgOpen;tcgOpen=function(){const cards=_top.apply(this,arguments);try{const m=store();pend.forEach(i=>{const c=cards[i];if(!c)return;const cl=Object.assign({},c);delete cl._new;delete cl._rv;m.sg.push({card:cl,foil:!!c.foil,gr:0});c._sg=1;addNews('n.cmsig',{n:c.n})})}catch(e){}pend=[];return cards};
-const _tch=tcgCardHtml;tcgCardHtml=function(c,i){let h=_tch.apply(this,arguments);if(c&&c._sg){h=h.replace('class="tcg ','class="tcg sig ').replace('<div class="tc-av">','<div class="tc-av"><svg class="tc-sg" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M4 22 C14 2 22 2 20 16 S30 26 38 10 S50 4 52 18 S64 26 70 12 S82 6 96 20" fill="none" stroke="#f5d76e" stroke-width="2.4" stroke-linecap="round"/></svg>')}return h};
+let pend=[],pendB=[];
+const _tdr=tcgDraw;tcgDraw=function(kind){let out=_tdr.apply(this,arguments);pend=[];pendB=[];
+ try{if(kind==='std'||kind==='pre'){const pb=kind==='pre'?.12:.09,keep=[];out.forEach((c,i)=>{const guaranteed=kind==='pre'&&i===out.length-1;if(!guaranteed&&rnd()<pb){const b=beltDraw(1)[0];if(b){pendB.push(b);return}}keep.push(c)});out=keep;
+   if(kind==='pre'&&!out.concat(pendB).some(c=>TCG_R.indexOf(c.r)>=2)){const b=beltDraw(1).find(x=>TCG_R.indexOf(x.r)>=2);if(b)pendB.push(b);else if(out.length)out[out.length-1]=mgDraw1('r')}}
+  const ch=SGP[kind]||0;out.forEach((c,i)=>{if(ch&&W(c.id)&&rnd()<ch)pend.push(i)})}catch(e){}return out};
+const _top=tcgOpen;tcgOpen=function(){const cards=_top.apply(this,arguments);try{const m=store();pend.forEach(i=>{const c=cards[i];if(!c)return;const cl=Object.assign({},c);delete cl._new;delete cl._rv;m.sg.push({card:cl,foil:!!c.foil,gr:0});c._sg=1;addNews('n.cmsig',{n:c.n})});
+  pendB.forEach(c=>{const e=m.bc[c.id]||(m.bc[c.id]={card:Object.assign({},c,{foil:false}),n:0,fo:0});c._new=e.n===0;e.n++;if(c.foil)e.fo++;cards.push(c)})}catch(e){}pend=[];pendB=[];return cards};
+const _tch=tcgCardHtml;tcgCardHtml=function(c,i){if(c&&c.kind==='belt')return beltHtml(c,i);let h=_tch.apply(this,arguments);if(c&&c._sg){h=h.replace('class="tcg ','class="tcg sig ').replace('<div class="tc-av">','<div class="tc-av"><svg class="tc-sg" viewBox="0 0 100 30" preserveAspectRatio="none"><path d="M4 22 C14 2 22 2 20 16 S30 26 38 10 S50 4 52 18 S64 26 70 12 S82 6 96 20" fill="none" stroke="#f5d76e" stroke-width="2.4" stroke-linecap="round"/></svg>')}return h};
 try{const st=document.createElement('style');st.textContent='.tcg.sig{border-color:#f5d76e;box-shadow:0 0 14px #f5d76e99}.tcg .tc-av{position:relative}.tcg .tc-sg{position:absolute;left:0;right:0;bottom:2px;width:100%;height:28px;pointer-events:none;filter:drop-shadow(0 0 3px #000)}';document.head.appendChild(st)}catch(e){}
 /* ---------- random events ---------- */
 const _we7=weekEvents;weekEvents=async function(){try{const m=meW();if(m&&!m.hobbyOff&&G.week>10&&rnd()<.07){store();const rs=[];Object.entries(m.col).forEach(([id,e])=>{if(e.fo>0)rs.push({src:'w',id,card:e.card,foil:true,gr:e.gr})});m.sg.forEach((it,i)=>rs.push({src:'s',it,id:'s'+i,card:it.card,foil:!!it.foil,gr:it.gr}));
@@ -102,8 +109,6 @@ NEWV.cmk=function(){const m=meW();let h='<div class="top"><div><h2>'+esc(t('cm.t
  const c=C(),ip=Math.round((c.idx-1)*100);if(!c.off.length&&c.ow<=G.week){c.ow=G.week+3;c.off=mkOffers()}
  h+='<div class="card"><div class="grid g3" style="gap:10px"><div><div class="px">'+esc(t('cm.wallet'))+'</div><b>'+money(m.wallet)+'</b></div><div><div class="px">'+esc(t('cm.idx'))+'</div><b style="color:'+(ip>=0?'var(--pos,#6c6)':'var(--neg,#e66)')+'">'+(ip>=0?'▲ +':'▼ ')+ip+'%</b></div><div><div class="px">'+esc(t('cm.earn'))+'</div><b>'+money(c.earn)+'</b></div></div><div style="margin-top:8px">'+spark()+'</div></div>';
  if(G.cmmsg)h+='<div class="note">'+esc(G.cmmsg)+'</div>';
- const bpp=Math.round(tcgPrice('pre')*.7/10)*10;
- h+='<div class="card stack"><div class="row spread" style="gap:8px;flex-wrap:wrap"><div><h3>🏆 '+esc(t('cm.bp'))+'</h3><div class="mute" style="font-size:13px">'+esc(t('cm.bps'))+'</div></div><button class="btn gold" data-act="cmbpack"'+(m.wallet<bpp?' disabled':'')+'>'+esc(t('cm.bpbuy',{m:money(bpp)}))+'</button></div></div>';
  h+='<div class="card stack"><h3>'+esc(t('cm.off'))+'</h3>'+(c.off.length?'<div class="tcggrid">'+c.off.map((o,i)=>'<div class="stack" style="gap:4px;align-items:stretch">'+cardHtml(o.card,i,o.foil,o.sig)+(o.deal?'<div class="tag" style="color:var(--gold);align-self:center">'+esc(t('cm.deal'))+'</div>':'')+(o.sig?'<div class="tag" style="color:#f5d76e;align-self:center">✒️ '+esc(t('cm.sg'))+'</div>':'')+'<button class="btn sm gold" data-act="cmbuy" data-i="'+i+'"'+(m.wallet<o.price?' disabled':'')+'>'+esc(t('cm.buy',{m:money(o.price)}))+'</button></div>').join('')+'</div>':'<div class="mute">'+esc(t('cm.offnone'))+'</div>')+'</div>';
  h+='<div class="card stack"><h3>'+esc(t('cm.lst'))+'</h3>'+(c.lst.length?c.lst.map((l,i)=>'<div class="row spread" style="gap:8px;flex-wrap:wrap"><span><b>'+esc(l.card.n)+'</b>'+(l.foil?' ✨':'')+(l.src==='s'?' ✒️':'')+(l.gr?' <span class="tag">'+esc(t('cm.gr',{g:l.gr}))+'</span>':'')+' <span class="mute">· '+esc(t('cm.lstrow',{p:money(l.ask),w:l.w}))+'</span></span><button class="btn sm" data-act="cmcancel" data-i="'+i+'">'+esc(t('cm.cancel'))+'</button></div>').join(''):'<div class="mute">'+esc(t('cm.nolst'))+'</div>')+'</div>';
  const rs=rowsAll();
@@ -136,9 +141,6 @@ Object.assign(ACT,{
   else{giveBack(it);evMood(w,-2);G.cmmsg=t('cm.msg.signno',{n:w.name})}try{save()}catch(z){}render()},
  cmbuy(e){const c=C(),m=store(),o=c.off[+e.dataset.i];if(!o)return;if(m.wallet<o.price){G.cmmsg=t('cm.msg.nomoney');render();return}m.wallet-=o.price;c.off.splice(+e.dataset.i,1);
   if(o.sig)m.sg.push({card:Object.assign({},o.card,{foil:false}),foil:false,gr:0});else{giveBack({src:o.src==='b'?'b':'w',card:o.card,foil:o.foil,gr:0});if(o.src!=='b')try{tcgMilestones()}catch(z){}}
-  G.cmmsg=t('cm.msg.bought',{n:o.card.n,m:money(o.price)});try{save()}catch(z){}render()},
- cmbpack(){const m=store(),p=Math.round(tcgPrice('pre')*.7/10)*10;if(m.wallet<p){G.cmmsg=t('cm.msg.nomoney');render();return}m.wallet-=p;const cards=beltDraw(4);
-  cards.forEach(c=>{const e=m.bc[c.id]||(m.bc[c.id]={card:Object.assign({},c,{foil:false}),n:0,fo:0});c._new=e.n===0;e.n++;if(c.foil)e.fo++});try{save()}catch(z){}
-  openModal('<div class="row spread"><h2>'+esc(t('cm.bpopen'))+'</h2><button class="btn gold" data-act="tcgclose">'+t('tcg.ok')+'</button></div><div class="tcggrid">'+cards.map((c,i)=>beltHtml(c,i)).join('')+'</div>')}});
+  G.cmmsg=t('cm.msg.bought',{n:o.card.n,m:money(o.price)});try{save()}catch(z){}render()}});
 })();
 if(typeof normTexts==="function")normTexts();
