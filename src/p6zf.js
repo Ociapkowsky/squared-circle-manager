@@ -34,7 +34,19 @@
   +'<g class="rgfx"><polygon class="rgx" points="160,70 166,82 178,80 169,90 176,102 162,96 150,104 154,91 142,82 155,81" fill="#ffd34d" stroke="#fff" stroke-width="1"/>'
   +'<text class="rgc c1" x="160" y="46">1</text><text class="rgc c2" x="160" y="46">2</text><text class="rgc c3" x="160" y="46">3</text><text class="rgt rgtap" x="160" y="46">'+esc(t('rg.tap'))+'</text><text class="rgt rgdq" x="160" y="46">'+esc(t('rg.dq'))+'</text>'
   +'<text class="rgs sa" x="130" y="52">★</text><text class="rgs sb" x="190" y="52">★</text></g></svg>'};
- const phase=(r,p)=>{r.dataset.p=p;r.className=r.className.replace(/\bp\d\b/g,'').trim()+' p'+p};
+
+ /* sounds for the ring (synthesised with the game's own sound engine) */
+ try{Object.assign(SFX,{
+  slap(n){const c=sndCtx();if(!c)return;const t=c.currentTime;sNoise(c,t,.09,.22,'bandpass',1400,700,1.1,.002);sTone(c,95,t,.16,.26,'sine',55);sTone(c,330+(n||0)*70,t+.02,.1,.05,'triangle')},
+  thud(){const c=sndCtx();if(!c)return;const t=c.currentTime;sNoise(c,t,.07,.16,'lowpass',700,250,.8,.002);sTone(c,130,t,.12,.18,'sine',60)},
+  tap(){const c=sndCtx();if(!c)return;const t=c.currentTime;[0,.16,.32].forEach(d=>sNoise(c,t+d,.05,.14,'bandpass',1800,1000,1,.002))}})}catch(e){}
+ const seq=(r,list)=>{if(RUN&&RUN.fast)return;list.forEach(([ms,k,a])=>setTimeout(()=>{if(document.body.contains(r)&&document.getElementById('live'))sPlay(k,a)},ms))};
+ const sfxPhase=(r,p)=>{try{if(p===1&&r.classList.contains('big'))seq(r,[[200,'fanfare']]);
+  if(p===2)seq(r,[[330,'thud'],[660,'thud'],[1000,'thud']]);
+  if(p===3)seq(r,[[1050,'slam']]);
+  if(p===4){const c=r.dataset.cnt;if(c==='pin'||c==='ten')seq(r,[[20,'slap',1],[420,'slap',2],[820,'slap',3]]);else if(c==='tap')seq(r,[[20,'tap']]);else if(c==='dq')seq(r,[[20,'bell',3]]);else if(r.dataset.k==='lad')seq(r,[[20,'cheer',1]]);else if(r.dataset.k==='cag')seq(r,[[20,'cheer',1]]);if(c==='ten')seq(r,[[1300,'bell',1]])}
+  if(p===5&&r.dataset.k==='drw')seq(r,[[20,'bell',2]])}catch(e){}};
+ const phase=(r,p)=>{r.dataset.p=p;r.className=r.className.replace(/\bp\d\b/g,'').trim()+' p'+p;sfxPhase(r,p)};
  const finOf=m=>{let f=m.finish||'clean';const sp=STIPS[m.stip]||STIPS.none;if(sp.noDQ&&(f==='dq'||f==='count'))f='clean';return f};
  const kindOf=(m,fin)=>{if(fin==='draw')return'drw';if(fin==='dq')return'dq';if(fin==='count')return'out';
   return {tables:'tbl',ladder:'lad',prizematch:'lad',cage:'cag',extreme:'ext',lms:'lms',submission:'sub'}[m.stip]||('m'+(hash((m.a[0]||'')+(m.b[0]||'')+(m.mv||''))%4))};
