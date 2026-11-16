@@ -1,9 +1,10 @@
 /* ============ Graphics and helpers ============ */
-function avatar(l,px){
+function avatarBase(l,px){
  l=l||{};px=px||64;const sk=SKIN[(l.skin||0)%SKIN.length],hc=HAIRC[(l.hairC||0)%HAIRC.length],oc=OUTC[(l.outC||0)%OUTC.length],mc=OUTC[(l.maskC||0)%OUTC.length];
  const c2=OUTC[(l.o2==null?((l.outC||0)+3):l.o2)%OUTC.length],bc=l.beardC==null?hc:HAIRC[l.beardC%HAIRC.length];
  const hair=l.hair||'short',beard=l.beard||'none',outfit=l.outfit||'trunks',mask=l.mask||'none',acc=l.acc||'none',gear=l.gear||'none',face=l.face||'none',build=l.build||'std',neck=l.neck||'none';
  let s='';const R=(x,y,w,h,c,o)=>{s+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+c+'"'+(o?' opacity="'+o+'"':'')+'/>'};
+ const lum=h=>{h=(h||'#888888').replace('#','');if(h.length===3)h=h[0]+h[0]+h[1]+h[1]+h[2]+h[2];return .3*parseInt(h.slice(0,2),16)+.59*parseInt(h.slice(2,4),16)+.11*parseInt(h.slice(4,6),16)};
  const B={std:[4,8,2,12,5,9,2],big:[3,10,1,13,4,9,3],lean:[5,6,3,11,5,9,2],stocky:[4,8,2,12,4,9,3],bulk:[2,12,0,14,4,9,3]}[build]||[4,8,2,12,5,9,2];
  const TX=B[0],TW=B[1],AL=B[2],AR=B[3],LL=B[4],LR=B[5],LW=B[6];
  // hair behind the body
@@ -15,6 +16,13 @@ function avatar(l,px){
  else if(hair==='dreads'){R(3,3,1,8,hc);R(4,3,1,6,hc);R(11,3,1,6,hc);R(12,3,1,8,hc)}
  else if(hair==='wavy'||hair==='halfup'||hair==='bangs'){R(3,3,1,7,hc);R(12,3,1,7,hc);R(4,3,1,8,hc);R(11,3,1,8,hc)}
  else if(hair==='mullet'){R(4,3,1,5,hc);R(11,3,1,5,hc);R(3,6,1,3,hc);R(12,6,1,3,hc)}
+ else if(hair==='rockstar'){R(3,3,2,9,hc);R(11,3,2,9,hc)}
+ else if(hair==='mpony'){R(11,3,2,1,hc);R(12,4,1,7,hc)}
+ else if(hair==='curtain'){R(3,3,2,10,hc);R(11,3,2,10,hc)}
+ else if(hair==='twinbuns'){R(3,0,2,2,hc);R(11,0,2,2,hc)}
+ else if(hair==='sidepony'){R(2,3,2,7,hc);R(3,2,1,2,hc)}
+ else if(hair==='crimped'){R(2,3,2,9,hc);R(12,3,2,9,hc);R(3,5,1,1,hc);R(12,7,1,1,hc)}
+ else if(hair==='viking'){R(4,3,1,6,hc);R(11,3,1,6,hc);R(3,5,1,4,hc);R(12,5,1,4,hc)}
  // body
  let legC=sk,torC=sk,armC=sk,hipC=oc;
  if(outfit==='singlet'){torC=oc}
@@ -55,6 +63,28 @@ function avatar(l,px){
  else if(outfit==='overalls'){R(TX+1,9,1,6,oc);R(TX+TW-2,9,1,6,oc);R(6,12,4,2,oc)}
  else if(outfit==='kilt'){R(TX,17,TW,3,oc);R(TX,18,TW,1,c2);R(7,17,1,3,c2)}
  else if(outfit==='bodysuit'){R(TX,11,TW,1,c2);R(LL,17,1,5,c2)}
+ // trunks decoration, shoes, dark-body highlights (variety + contrast)
+ {const deco=l.deco||'none',shoe=l.shoe||'none';
+  const dc=lum(hipC)<110?(lum(c2)>140?c2:'#e8e6df'):(lum(c2)<110?c2:'#2a2a2a');
+  if(outfit==='trunks'||outfit==='kilt'||outfit==='shorts'||outfit==='tank'||outfit==='tshirt'||outfit==='hoodie'||outfit==='stripes'){
+   if(deco==='side'){R(TX,14,1,3,dc);R(TX+TW-1,14,1,3,dc)}
+   else if(deco==='band')R(TX,14,TW,1,dc);
+   else if(deco==='twin'){R(TX,14,TW,1,dc);R(TX,16,TW,1,dc)}
+   else if(deco==='flame'){R(TX,16,TW,1,dc);R(TX+1,15,1,1,dc);R(TX+3,15,1,1,dc);R(TX+5,15,1,1,dc)}
+   else if(deco==='dots'){R(TX+1,15,1,1,dc);R(TX+3,15,1,1,dc);R(TX+5,15,1,1,dc);R(TX+2,16,1,1,dc);R(TX+4,16,1,1,dc)}
+   else if(deco==='cross'){R(7,14,2,3,dc);R(TX+1,15,TW-2,1,dc)}
+   else if(deco==='long'){R(LL,17,LW,2,hipC);R(LR,17,LW,2,hipC);R(LL,18,LW,1,dc);R(LR,18,LW,1,dc)}
+   else if(deco==='longside'){R(LL,17,LW,2,hipC);R(LR,17,LW,2,hipC);R(LL,17,1,2,dc);R(LR+LW-1,17,1,2,dc)}
+  }
+  if(lum(legC)<80){R(LL+1,17,1,4,'#fff',.25);R(LR+1,17,1,4,'#fff',.25);R(LL,19,LW,1,'#fff',.12);R(LR,19,LW,1,'#fff',.12)}
+  if(lum(torC)<70){R(TX+1,10,1,3,'#fff',.18);R(TX+TW-2,10,1,3,'#fff',.18);R(AL,10,1,4,'#fff',.16);R(AR+1,10,1,4,'#fff',.16)}
+  if(lum(hipC)<70&&deco==='none'){R(TX,14,TW,1,'#fff',.3)}
+  if(shoe!=='none'){const lg=lum(legC)<90,shc=lg?'#e8e6df':(lum(c2)<110?c2:'#2a2a2a');
+   if(shoe==='boots'){R(LL,19,LW,3,shc);R(LR,19,LW,3,shc);R(LL,19,LW,1,lg?'#9aa3b2':'#555');R(LR,19,LW,1,lg?'#9aa3b2':'#555')}
+   else if(shoe==='shoes'){R(LL,21,LW,1,shc);R(LR,21,LW,1,shc);R(LL-1,21,1,1,shc);R(LR+LW,21,1,1,shc)}
+   else if(shoe==='sneak'){R(LL,20,LW,2,shc);R(LR,20,LW,2,shc);R(LL,21,LW,1,'#fff');R(LR,21,LW,1,'#fff')}
+   else if(shoe==='socks'){R(LL,19,LW,1,'#f5f5f5');R(LR,19,LW,1,'#f5f5f5');R(LL,20,LW,1,shc);R(LR,20,LW,1,shc)}
+  }}
  // head
  R(5,3,6,6,sk);
  // gear
@@ -93,6 +123,19 @@ function avatar(l,px){
  if(hair==='bangs'){R(5,2,6,3,hc)}
  if(hair==='cornrows'){R(5,2,6,1,hc);R(5,1,1,2,hc);R(7,1,1,2,hc);R(9,1,1,2,hc);R(10,1,1,1,hc)}
  if(hair==='halfup'){R(7,0,2,2,hc)}
+ if(hair==='sidepart'){R(5,2,6,2,hc);R(4,3,1,3,hc);R(11,3,1,2,hc);R(8,2,1,1,sk,.55)}
+ if(hair==='wild'){R(4,0,8,3,hc);R(3,1,1,4,hc);R(12,1,1,4,hc);R(5,0,1,1,sk,.0)}
+ if(hair==='rockstar'){R(4,1,8,3,hc);R(4,3,1,5,hc);R(11,3,1,5,hc);R(7,1,1,2,sk,.35)}
+ if(hair==='bowl'){R(4,1,8,3,hc);R(4,3,1,2,hc);R(11,3,1,2,hc);R(5,4,6,1,hc)}
+ if(hair==='twinspike'){R(5,2,6,1,hc);R(5,0,1,2,hc);R(10,0,1,2,hc);R(7,1,2,1,hc)}
+ if(hair==='sidefade'){R(5,1,6,2,hc);R(4,3,1,1,hc,.5);R(11,3,1,1,hc,.5);R(5,3,6,1,hc,.4)}
+ if(hair==='mpony'){R(5,2,6,2,hc);R(4,3,1,2,hc)}
+ if(hair==='curtain'){R(5,2,6,2,hc);R(4,3,1,5,hc);R(11,3,1,5,hc);R(7,2,2,1,sk,.6)}
+ if(hair==='twinbuns'){R(5,2,6,2,hc);R(4,3,1,2,hc);R(11,3,1,2,hc)}
+ if(hair==='sidepony'){R(5,2,6,2,hc);R(10,2,2,3,hc)}
+ if(hair==='crimped'){R(4,1,8,3,hc);R(3,2,1,3,hc);R(12,2,1,3,hc);R(5,1,1,1,sk,.0)}
+ if(hair==='pixie'){R(5,1,6,3,hc);R(4,2,1,3,hc);R(11,2,1,2,hc);R(9,3,2,1,hc)}
+ if(hair==='viking'){R(5,1,6,2,hc);R(4,2,1,3,hc);R(11,2,1,3,hc);R(6,0,4,1,hc)}
  // beard
  if(beard==='stubble')R(5,7,6,2,bc,.4);
  else if(beard==='heavy')R(5,6,6,3,bc,.55);
@@ -109,6 +152,12 @@ function avatar(l,px){
  else if(beard==='anchor'){R(6,7,4,1,bc);R(7,8,2,1,bc);R(5,9,6,1,bc)}
  else if(beard==='circle'){R(6,7,4,1,bc);R(6,8,1,2,bc);R(9,8,1,2,bc);R(7,9,2,1,bc)}
  else if(beard==='bushy'){R(4,6,8,4,bc)}
+ else if(beard==='chops'){R(4,4,1,4,bc);R(11,4,1,4,bc);R(5,6,1,2,bc);R(10,6,1,2,bc)}
+ else if(beard==='fumanchu'){R(5,7,1,5,bc);R(10,7,1,5,bc);R(6,7,4,1,bc)}
+ else if(beard==='neck'){R(5,8,6,3,bc);R(6,7,4,1,bc,.6)}
+ else if(beard==='longgoat'){R(7,8,2,5,bc);R(6,7,4,1,bc)}
+ else if(beard==='viking'){R(5,7,6,3,bc);R(5,10,2,3,bc);R(9,10,2,3,bc);R(7,10,2,1,bc)}
+ else if(beard==='stachegrey'){R(5,7,6,1,'#c4c4c4');R(5,8,1,1,'#c4c4c4');R(10,8,1,1,'#c4c4c4')}
  else if(beard==='patchy'){R(5,7,1,1,bc,.8);R(7,8,1,1,bc,.8);R(9,7,1,1,bc,.8);R(10,8,1,1,bc,.8);R(6,9,1,1,bc,.8)}
  // face extras
  if(face==='scar')R(9,4,1,3,'#b04a4a');
@@ -152,6 +201,25 @@ function avatar(l,px){
  else if(acc==='earrings'){R(4,7,1,1,'#f2c94c');R(11,7,1,1,'#f2c94c')}
  return '<svg viewBox="0 0 16 23" width="'+Math.round(px*16/23)+'" height="'+px+'" shape-rendering="crispEdges" aria-hidden="true">'+s+'</svg>';
 }
+const NEWH_M=['sidepart','wild','rockstar','bowl','twinspike','sidefade','mpony','viking'],NEWH_F=['curtain','twinbuns','sidepony','crimped','pixie'],NEWB=['chops','fumanchu','neck','longgoat','viking','stachegrey'];
+const FEMH=['wavy','bangs','halfup','bob','pony','pigtails'],FEMO=['leotard','robe','overalls'];
+function avatarDerive(l){
+ l=l||{};if(l._d)return l;
+ let h=0;const js=JSON.stringify(l);for(let i=0;i<js.length;i++)h=(h*31+js.charCodeAt(i))|0;h=Math.abs(h);const q=(n,m)=>Math.floor(h/n)%m;
+ const o=Object.assign({},l,{_d:1});
+ const fem=!!l.fm||FEMH.includes(l.hair)||FEMO.includes(l.outfit)||l.face==='lipstick'||l.face==='eyeliner';
+ if(!l.nh&&(!l.mask||l.mask==='none'||l.mask==='half'||l.mask==='bandana')&&q(1,100)<38&&!['cap','backcap','beanie','fedora','cowboy','crown','visor'].includes(l.acc)){const A=fem?NEWH_F:NEWH_M;o.hair=A[q(7,A.length)]}
+ if(!fem&&!l.nb&&(l.beard==null||l.beard==='none'||l.beard==='stubble')&&q(13,100)<22)o.beard=NEWB[q(17,NEWB.length)];
+ if(o.deco==null)o.deco=['none','none','side','band','twin','flame','dots','cross','long','long','longside','side'][q(19,12)];
+ if(o.shoe==null)o.shoe=['none','boots','boots','shoes','sneak','sneak','socks','none','boots'][q(23,9)];
+ if((l.gear==null||l.gear==='none')&&q(29,100)<42)o.gear=['kneepads','wristbands','pads','tape','elbow','armband','gloves','tattoo'][q(31,8)];
+ if((l.face==null||l.face==='none')&&q(37,100)<10)o.face=fem?'freckles':['scar','freckles','bruise','bandage'][q(41,4)];
+ return o}
+function avatar(l,px){
+ const d=avatarDerive(l);let sv=avatarBase(d,px);
+ const sk=1;const dark=(()=>{try{const oc=OUTC[(d.outC||0)%OUTC.length];const lm=h=>{h=h.replace('#','');return .3*parseInt(h.slice(0,2),16)+.59*parseInt(h.slice(2,4),16)+.11*parseInt(h.slice(4,6),16)};const o=d.outfit||'trunks';return lm(oc)<75&&o!=='singlet'?true:(['pants','suit','jacket','gi','tux','hoodie','leather','bodysuit','tights'].includes(o)&&lm(oc)<75)}catch(e){return false}})();
+ if(dark)sv=sv.replace('<svg ','<svg style="filter:drop-shadow(0 0 .7px rgba(255,255,255,.75))" ');
+ return sv}
 function openModal(html){if(!hasDoc)return;const m=document.getElementById('modal');m.innerHTML='<div class="mbox" role="dialog" aria-modal="true">'+html+'</div>';m.hidden=false}
 function closeModal(){if(!hasDoc)return;const m=document.getElementById('modal');m.hidden=true;m.innerHTML=''}
 const bar=(v,cls)=>'<div class="bar '+(cls||'')+'"><i style="width:'+clamp(v,0,100)+'%"></i></div>';
