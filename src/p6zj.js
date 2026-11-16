@@ -13,6 +13,7 @@
   if(n>=0)return h+'<div class="mute" style="font-size:12px">'+esc(t('hn.pos',{n:sg(n),a:sg(a)}))+'</div>';
   const left=G.fed.cash-f,k=left>0?Math.floor(left/-n):0;
   return h+'<div style="font-size:12px;font-weight:700;color:#d83a3a;margin-top:2px">⚠️ '+esc(t(left>0?'hn.neg':'hn.neg0',{n:sg(n),a:sg(a),k}))+'</div>'}catch(e){return ''}}
- const _wc=wCard;wCard=function(w,extra){if(typeof extra==='string'&&extra.indexOf('data-act="sign"')>=0)extra+=note(w);return _wc.call(this,w,extra)};
+ const _wc=wCard;wCard=function(w,extra){const mk=typeof extra==='string'&&extra.indexOf('data-act="sign"')>=0;if(mk)extra+=note(w);let h=_wc.call(this,w,extra);
+  if(mk){try{const sal=t('st.salary',{m:money(w.salary)});h=h.replace(' · '+sal,'')}catch(e){}}return h};
 })();
 if(typeof normTexts==="function")normTexts();
