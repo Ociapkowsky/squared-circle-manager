@@ -3,7 +3,8 @@
 function accF(w){return .86+.14*(w.acc||0)/100}
 function foreign(w){return w.country!==G.fed.country}
 function perf(w){
- const base=w.ring*.5+w[KEY[w.style]]*.22+w.psy*.15+w.sta*.13;
+ const SW={technician:[.04,.04,.14],powerhouse:[.14,.04,.04],strong:[.14,.04,.04],brawler:[.12,.05,.05],highflyer:[.03,.14,.05],lucha:[.03,.14,.05],hardcore:[.10,.06,.06]}[w.style]||[.073,.073,.073];
+ const base=w.ring*.5+(w.str*SW[0]+w.spd*SW[1]+w.tec*SW[2])+w.psy*.15+w.sta*.13;
  return base*accF(w)*(1-Math.max(0,w.fatigue-60)/200)*(.94+.06*w.morale/100);
 }
 const chaEff=w=>w.cha*(foreign(w)?.8+.2*(w.acc||0)/100:1);
