@@ -17,13 +17,21 @@
    f.innerHTML='<feComponentTransfer><feFuncR type="table" tableValues="'+tv(0)+'"/><feFuncG type="table" tableValues="'+tv(1)+'"/><feFuncB type="table" tableValues="'+tv(2)+'"/></feComponentTransfer>';(d.querySelector('defs')||d).appendChild(f)}}}catch(e){}return id};
  const img=(k,x,y,w,h,c)=>'<image href="'+PLIMG[k][2]+'" x="'+x.toFixed(2)+'" y="'+y.toFixed(2)+'" width="'+w.toFixed(2)+'" height="'+h.toFixed(2)+'" preserveAspectRatio="none" filter="url(#'+tint(c)+')"/>';
  window.plateImg=img;
+ const strapImg=(pt,st,st2)=>{st=/^#[0-9a-f]{6}$/i.test(st)?st.toLowerCase():'#1a1a1a';st2=/^#[0-9a-f]{6}$/i.test(st2)?st2.toLowerCase():'#f2c94c';const id='ps'+st.slice(1)+st2.slice(1);
+  try{if(typeof document!=='undefined'&&document.body&&!document.getElementById(id)){const d=document.getElementById('plate-defs');if(d){
+    const mx=(a,b,k)=>{const A=hx2(a),B=hx2(b);return A.map((v,i)=>v+(B[i]-v)*k)};
+    const stops=[mx(st,'#000000',.6),mx(st,'#000000',0),mx(st,st2,.3),mx(st,st2,1),mx(st2,'#ffffff',.3),mx(st2,'#ffffff',.6)];
+    const tv=i=>stops.map(x=>(x[i]/255).toFixed(3)).join(' ');
+    const f=document.createElementNS('http://www.w3.org/2000/svg','filter');f.setAttribute('id',id);f.setAttribute('color-interpolation-filters','sRGB');f.setAttribute('x','0');f.setAttribute('y','0');f.setAttribute('width','1');f.setAttribute('height','1');
+    f.innerHTML='<feComponentTransfer><feFuncR type="table" tableValues="'+tv(0)+'"/><feFuncG type="table" tableValues="'+tv(1)+'"/><feFuncB type="table" tableValues="'+tv(2)+'"/></feComponentTransfer>';(d.querySelector('defs')||d).appendChild(f)}}}catch(e){}
+  return '<image href="'+PLIMG['S:'+pt][2]+'" x="0" y="20" width="160" height="26" preserveAspectRatio="none" filter="url(#'+id+')"/>'};
  const use=(id,cx,cy,bw,bh,sw,sh,c)=>{if(PLIMG[id]){const k=Math.min(bw/sw,bh/sh);return img(id,cx-sw*k/2,cy-sh*k/2,sw*k,sh*k,c)}const k=Math.min(bw/sw,bh/sh);const w=sw*k,h=sh*k;return '<g style="'+pvars(c)+'"><use href="#pl'+id+'" transform="translate('+(cx-w/2).toFixed(2)+' '+(cy-h/2).toFixed(2)+') scale('+k.toFixed(4)+')"/></g>'};
  const _belt=belt;
  belt=function(tt,w){
   const mi=PM[tt.mainImg]||PMC[tt.mainShape||'oval'],si=PS[tt.sideImg];if(!mi&&!si)return _belt.apply(this,arguments);
   w=w||160;const st=tt.strap||'#1a1a1a',st2=tt.strap2||'#f2c94c',pl=PLATE[tt.plate]||PLATE.gold,tag=tt.teams===2;
   const ms=tt.mainShape||'oval',ss=tt.sideShape||'rect',sn=tt.sideN==null?1:tt.sideN,me=tt.mainEmb||(tag?'none':'letter'),se=tt.sideEmb||'gem';
-  let s='<rect x="0" y="20" width="160" height="26" rx="4" fill="'+st+'"/>'+strapPat(tt.pat||'plain',st2)+'<rect x="0" y="23" width="160" height="2" fill="#fff" opacity=".2"/><rect x="0" y="41" width="160" height="2" fill="#000" opacity=".3"/>';
+  let s=PLIMG['S:'+(tt.pat||'plain')]?strapImg(tt.pat||'plain',st,st2):'<rect x="0" y="20" width="160" height="26" rx="4" fill="'+st+'"/>'+strapPat(tt.pat||'plain',st2)+'<rect x="0" y="23" width="160" height="2" fill="#fff" opacity=".2"/><rect x="0" y="41" width="160" height="2" fill="#000" opacity=".3"/>';
   const bw=tag?50:82,bh=tag?42:58;
   const mains=(tag?[54,106]:[80]).map(cx=>{if(mi){const k=Math.min(bw/mi.w,bh/mi.h);return [cx,mi.w*k/2,mi.h*k/2]}return [cx,tag?26:30,tag?22:30]});
   const left=mains[0][0]-mains[0][1],right=mains[mains.length-1][0]+mains[mains.length-1][1];
