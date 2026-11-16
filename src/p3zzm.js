@@ -97,11 +97,11 @@ const S=[
 ['Kazuchika Okata','rainmaker','Deszczowy Człowiek','The Rainmaker','Pieniądze spadają jak deszcz za każdym razem, gdy wchodzi.','Money falls like rain every time he enters.'],
 ['Tetsuya Naido','chaos','Pan Chaosu','Master of Chaos','Zawsze ma plan, nawet gdy wygląda na szaleństwo.','Always has a plan, even when it looks like madness.'],
 ['Jeff Kobb','kobb','Człowiek Stal','Steel Man','Zbudowany z żelaza i jeszcze twardszy w środku.','Built from iron and tougher inside.'],
-['Mercedes Mon','ceo','Przedsiębiorczyni','The CEO','Biznes jest biznesem, a pas to inwestycja.','Business is business and the belt is an investment.'],
+['Mercedes Monn','ceo','Przedsiębiorczyni','The CEO','Biznes jest biznesem, a pas to inwestycja.','Business is business and the belt is an investment.'],
 ['Toni Stormm','timeless','Ponadczasowa','Timeless','Nie starzeje się, nie męczy i nigdy nie schodzi ze szczytu.','Doesn\'t age, doesn\'t tire, never leaves the top.'],
 ['Jaimie Hayder','badgirl','Pani Zła','The Bad Girl','Uśmiecha się, gdy łamie komuś kark.','Smiles while breaking someone\'s neck.'],
 ['Willow Nightengale','star','Spadająca Gwiazda','Falling Star','Mała, energiczna, z sercem dużym jak hala.','Small, energetic, with a heart as big as the arena.'],
-['Shuri','queen2','Królowa Gwiazd','Queen of Stars','Wzór dla całego pokolenia zawodniczek.','A role model for a whole generation of wrestlers.'],
+['Shurii','queen2','Królowa Gwiazd','Queen of Stars','Wzór dla całego pokolenia zawodniczek.','A role model for a whole generation of wrestlers.'],
 ['Joe Hendrie','singer','Śpiewający Mistrz','The Singing Champion','Wchodzi z własną piosenką i wierzy w siebie.','Enters with his own song and believes in himself.'],
 ['Samoa Jo','destroyer','Niszczyciel z Samoa','Samoan Destroyer','Szybki jak na swoje gabaryty i nieprzewidywalny.','Fast for his size and unpredictable.'],
 ['Mark Briskoe','redneck','Rodzinna Duma','Family Pride','Walczy za brata i za honor rodziny.','Fights for his brother and the family\'s honour.']];

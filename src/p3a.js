@@ -146,7 +146,7 @@ function newGame(fedId,custom){
  const ws=JSON.parse(JSON.stringify(PACK.wrestlers));let fed,rivals;const fedC={};PACK.feds.forEach(f=>fedC[f.id]=f.country);
  if(custom){
   const nm=(custom.name||'My Promotion').slice(0,40),cc=custom.country||'PL';fedC.mine=cc;
-  fed={id:'mine',name:nm,short:(nm.replace(/[^A-Za-z0-9 ]/g,'').split(' ').filter(Boolean).map(x=>x[0]).join('').slice(0,4)||'MYP').toUpperCase(),country:cc,tier:1,pop:6,cash:12000,color:'#f2b632'};
+  fed={id:'mine',name:nm,short:(nm.replace(/[^A-Za-z0-9 ]/g,'').split(' ').filter(Boolean).map(x=>x[0]).join('').slice(0,4)||'MYP').toUpperCase(),country:cc,tier:1,pop:6,cash:18000,color:'#f2b632'};
   rivals=PACK.feds.map(f=>Object.assign({},f));
   for(let i=0;i<6;i++){const N=NAMES[cc]||NAMES.US;let nmw;for(let g=0;g<40;g++){nmw=N.f[Math.floor(rnd()*N.f.length)]+' '+N.l[Math.floor(rnd()*N.l.length)];if(!ws.some(x=>x.name===nmw||(x.fed==='mine'&&x.name.split(' ')[0]===nmw.split(' ')[0]||x.name.split(' ').slice(-1)[0]===nmw.split(' ').slice(-1)[0])))break};const style=STYLES[Math.floor(rnd()*7)];
    const w={id:'c'+i,name:nmw,country:cc,style,role:i%2?'heel':'face',ring:clamp(Math.round(34+SBIAS[style].ring+(rnd()-.5)*12),20,60),mic:30+Math.floor(rnd()*20),cha:32+Math.floor(rnd()*20),pop:6+Math.floor(rnd()*8),age:22+Math.floor(rnd()*12),fed:'mine',contract:52,injury:0,look:randLook(Math.random,cc)};

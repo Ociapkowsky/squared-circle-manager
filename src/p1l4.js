@@ -46,7 +46,7 @@ CUR.kpw=[
 'Tom Fulten|GB|technician|f||a:29 h:short hc:2 of:trunks oc:1 o2:5 sk:0',
 'Tristan Archar|FR|powerhouse|h||a:34 h:short hc:2 b:stubble bd:big of:trunks oc:1 sk:0',
 'William "Pastor" Eaver|GB|technician|h||a:35 h:short hc:0 b:stubble of:coat oc:21 o2:5 sk:0',
-'Yuu|JP|highflyer|f||a:27 h:short hc:0 of:trunks oc:3 sk:5',
+'Yuuh|JP|highflyer|f||a:27 h:short hc:0 of:trunks oc:3 sk:5',
 'Zak Zodiak|GB|powerhouse|h||a:36 h:long hc:2 b:full bd:big of:trunks oc:21 sk:0',
 'Bianka|PL|technician|f|f|a:28 h:long hc:2 of:singlet oc:9 o2:21 sk:0',
 'Kat von Keige|GB|technician|h|f|a:28 h:long hc:0 of:singlet oc:21 o2:9 sk:0'

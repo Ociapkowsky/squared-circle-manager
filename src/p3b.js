@@ -224,7 +224,7 @@ async function endWeek(){
  if(await boardWeekly())return;
  await feudEvents(); await feudChapters(); await titleStory();
  save();
- if(G.debt>=6){openModal('<h2>'+t('go.title')+'</h2><p class="mute">'+t('go.body')+'</p><button class="btn gold" data-act="gameover">'+t('go.again')+'</button>');return}
+ if(G.debt>=8){openModal('<h2>'+t('go.title')+'</h2><p class="mute">'+t('go.body')+'</p><button class="btn gold" data-act="gameover">'+t('go.again')+'</button>');return}
  G.screen='show';render();
 }
 function askGeneric(title,body,opts){

@@ -58,7 +58,7 @@ CUR.roh=[
 'Matt Menarde|US|technician|f||a:40 sk:0 h:slick hc:3 b:full of:trunks oc:0 o2:21 ',
 'Matt Tavan|US|technician|f||a:39 sk:3 h:short hc:2 b:goatee of:trunks oc:1 o2:21 ',
 'Mike Benett|US|technician|f||a:40 sk:0 h:long hc:3 of:trunks oc:14 o2:5 ',
-'Mascara Dorado|MX|lucha|f||a:39 sk:9 of:trunks oc:21 o2:7 mk:full mc:14 ',
+'Mascara Dorrado|MX|lucha|f||a:39 sk:9 of:trunks oc:21 o2:7 mk:full mc:14 ',
 'Místico X|MX|lucha|f||a:45 sk:9 of:trunks oc:3 o2:21 mk:full mc:3 ',
 'Nick Comorotto|US|powerhouse|f||a:31 sk:0 h:undercut hc:0 bd:big of:trunks oc:21 o2:0 gr:tattoo ',
 'Nigel McGinnes|GB|technician|f||a:50 sk:1 h:buzz hc:0 of:trunks oc:1 o2:5 ',
@@ -95,7 +95,7 @@ CUR.roh=[
 'Leila Gray|US|technician|h|f|a:26 sk:3 h:wavy hc:6 of:singlet oc:1 o2:5 ',
 'Maya Wurld|JP|highflyer|h|f|a:26 sk:5 h:bob hc:3 of:singlet oc:4 o2:21 ',
 'Marina Shafeer|US|brawler|h|f|a:38 sk:0 h:long hc:2 of:singlet oc:3 o2:21 ',
-'Mina Shirakawa|JP|highflyer|h|f|a:29 sk:5 h:bob hc:3 of:singlet oc:11 o2:21 ',
+'Mina Shirakava|JP|highflyer|h|f|a:29 sk:5 h:bob hc:3 of:singlet oc:11 o2:21 ',
 'Queen Aminatta|US|technician|h|f|a:30 sk:9 h:pony hc:0 of:singlet oc:9 o2:9 ',
 'Rachel Ellering|US|powerhouse|h|f|a:30 sk:0 h:braids hc:0 of:singlet oc:11 o2:0 ',
 'Red Velvett|US|powerhouse|h|f|a:33 sk:0 h:bob hc:6 of:singlet oc:21 o2:5 ',
@@ -115,11 +115,11 @@ CUR.str=[
 'Bea Priestly|GB|strong|h|f|a:29 sk:1 h:bob hc:3 of:singlet oc:3 o2:21 ',
 'Julia Hartte|US|brawler|h|f|a:28 sk:0 h:halfup hc:10 of:singlet oc:0 o2:5 ',
 'Maki Ito|JP|brawler|h|f|a:29 sk:5 h:bangs hc:0 of:singlet oc:14 o2:5 ',
-'Sareee|JP|strong|h|f|a:27 sk:5 h:long hc:0 of:singlet oc:3 o2:5 ',
+'Sareeh|JP|strong|h|f|a:27 sk:5 h:long hc:0 of:singlet oc:3 o2:5 ',
 'Saya Kamitane|JP|highflyer|h|f|a:29 sk:5 h:wavy hc:0 of:singlet oc:0 o2:0 ',
 'Skye Bleu|US|highflyer|h|f|a:27 sk:0 h:wavy hc:5 of:singlet oc:1 o2:21 ',
-'Shuri|JP|strong|h|f|a:36 sk:5 h:bob hc:10 of:singlet oc:9 o2:21 ',
+'Shurii|JP|strong|h|f|a:36 sk:5 h:bob hc:10 of:singlet oc:9 o2:21 ',
 'Thekla Fon|DE|powerhouse|h|f|a:30 sk:0 h:bob hc:0 of:singlet oc:0 o2:0 ',
 'Utami Hayashishta|JP|powerhouse|h|f|a:31 sk:5 h:braids hc:6 of:singlet oc:0 o2:9 '
 ];
-STB.str=[['God\'s Eye',['Bea Priestly','Shuri','Saya Kamitane']],['Queens Quest Crew',['Utami Hayashishta','AZM','Sareee']],['Donna Del Mondo Jr',['Maki Ito','Thekla Fon']]];
+STB.str=[['God\'s Eye',['Bea Priestly','Shurii','Saya Kamitane']],['Queens Quest Crew',['Utami Hayashishta','AZM','Sareeh']],['Donna Del Mondo Jr',['Maki Ito','Thekla Fon']]];

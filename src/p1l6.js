@@ -35,7 +35,7 @@ CUR.mcw=[
 'Chris Steeler|PL|powerhouse|f||a:33 h:short hc:4 b:full bd:big of:trunks oc:21 o2:14 sk:0',
 'David Sirch|PL|technician|h||a:32 mk:half mc:21 of:trunks oc:21 sk:0',
 'Terror|PL|hardcore|h||a:34 mk:oni mc:0 of:vest oc:21 sk:0',
-'Doomfist|PL|powerhouse|h||a:36 h:bald b:full bd:bulk of:trunks oc:21 gr:gloves sk:0',
+'Doomfyst|PL|powerhouse|h||a:36 h:bald b:full bd:bulk of:trunks oc:21 gr:gloves sk:0',
 'Phantom|PL|technician|f||a:30 mk:full mc:8 of:trunks oc:21 o2:8 sk:0',
 'Shida|PL|strong|f||a:31 h:short hc:0 of:gi oc:21 sk:0',
 'Sigurd|PL|strong|h||a:35 h:long hc:3 b:long bd:big of:vest oc:20 sk:0'

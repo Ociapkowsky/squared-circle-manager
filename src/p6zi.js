@@ -27,7 +27,7 @@
  /* stakes: debt escalates before the game-over */
  const _fs=finishShow;finishShow=function(){const r=_fs.apply(this,arguments);try{const d=G.debt|0;
    if(d>=2){xmood(-2);xpop(-.3)}
-   if(d===2)addNews('dbt.1');else if(d===4)addNews('dbt.2');else if(d===5)addNews('dbt.3')}catch(e){}return r};
+   if(d===2)addNews('dbt.1');else if(d===5)addNews('dbt.2');else if(d===7)addNews('dbt.3')}catch(e){}return r};
  /* choice events with a real cost */
  const star=()=>mine().filter(w=>!w.ext&&w.pop>=55&&w.morale<55&&!w.farewell)[0];
  [

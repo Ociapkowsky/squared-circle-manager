@@ -50,7 +50,7 @@ CUR.rsp=[
 'Hokuto Omorri|JP|technician|f||a:30 sk:5 h:shaggy hc:3 b:full of:trunks oc:1 o2:5',
 'Go Shiozaky|JP|strong|f||a:38 sk:5 h:buzz hc:2 of:trunks oc:3 o2:7',
 'Hideki Suzuky|JP|technician|f||a:54 sk:5 h:shaggy hc:0 b:mustache of:trunks oc:0 o2:21',
-'Davey Boy Smith Jr|GB|technician|f||a:40 sk:0 h:long hc:0 of:trunks oc:0 o2:5 gr:tattoo',
+'Davey Boy Smyth Jr|GB|technician|f||a:40 sk:0 h:long hc:0 of:trunks oc:0 o2:5 gr:tattoo',
 'Daisuke Sekimotto|JP|powerhouse|f||a:44 sk:5 h:buzz hc:0 bd:big of:trunks oc:21 o2:7 gr:tattoo',
 'Masanobu Fuchy|JP|technician|f||a:70 sk:5 h:shaggy hc:2 of:trunks oc:1 o2:0 gr:tattoo',
 'Dan Tamora|JP|highflyer|f||a:29 sk:5 h:undercut hc:3 of:trunks oc:21 o2:0',
@@ -92,7 +92,7 @@ CUR.str=[
 'Saori Anoh|JP|technician|h|f|a:29 sk:5 h:bob hc:0 of:singlet oc:11 o2:21',
 'Yuna Mizumory|JP|highflyer|h|f|a:27 sk:5 h:braids hc:0 of:singlet oc:0 o2:9',
 'Anne Kanaja|JP|technician|h|f|a:26 sk:5 h:long hc:0 of:singlet oc:11 o2:0',
-'Shuri|JP|strong|h|f|a:36 sk:5 h:bob hc:10 of:singlet oc:9 o2:21',
+'Shurii|JP|strong|h|f|a:36 sk:5 h:bob hc:10 of:singlet oc:9 o2:21',
 'Ami Sorei|JP|powerhouse|h|f|a:33 sk:5 h:pigtails hc:2 of:singlet oc:14 o2:0',
 'Ranna Yagamy|JP|technician|h|f|a:30 sk:5 h:long hc:3 of:singlet oc:9 o2:5',
 'Hinna|JP|brawler|h|f|a:30 sk:5 h:long hc:2 of:singlet oc:1 o2:0',
@@ -125,7 +125,7 @@ CUR.str=[
 'Fuwa Chann|JP|brawler|h|f|a:25 sk:5 h:wavy hc:5 of:singlet oc:21 o2:5',
 'Maki Itoo|JP|brawler|h|f|a:29 sk:5 h:pony hc:10 of:singlet oc:3 o2:9'
 ];
-STB.str=[['STARS', ['Hanan Ito', 'Saya Iyda', 'Momo Kogo', 'Yuria Himme', 'Matoi Hamabi', 'Maikka', 'Waka Tsukiyamma', 'Hanakko', 'Utami Hayashishta']], ['COSMIC ANGELS', ['Aya Sakurra', 'Sayaka Kurarra', 'Natsupoy', 'Saori Anoh', 'Yuna Mizumory', 'Anne Kanaja']], ["God's Eye", ['Shuri', 'Ami Sorei', 'Ranna Yagamy', 'Hinna', 'Lady Cee', 'Tomoka Inabba', 'Kiyoka Kotatzu']], ['NEO GENESIS', ['Starlite Kid', 'Azumy', 'Mei Seyra', 'Miyu Amasaky', 'Ema Maishma']], ['H.A.T.E.', ['Natsuko Tohra', 'Momo Watanabi', 'Konammi', 'Saya Kamitany', 'Ruakka', 'Rinna', 'Bea Priestly', 'Azusa Inabba', 'Fukigen Deth']], ['Mi Vida Loca', ['Suzu Suzuky', 'Rina Yamashta', 'Itsuki Aoky', 'Bozzilla', 'Akira Kuroganne']]];
+STB.str=[['STARS', ['Hanan Ito', 'Saya Iyda', 'Momo Kogo', 'Yuria Himme', 'Matoi Hamabi', 'Maikka', 'Waka Tsukiyamma', 'Hanakko', 'Utami Hayashishta']], ['COSMIC ANGELS', ['Aya Sakurra', 'Sayaka Kurarra', 'Natsupoy', 'Saori Anoh', 'Yuna Mizumory', 'Anne Kanaja']], ["God's Eye", ['Shurii', 'Ami Sorei', 'Ranna Yagamy', 'Hinna', 'Lady Cee', 'Tomoka Inabba', 'Kiyoka Kotatzu']], ['NEO GENESIS', ['Starlite Kid', 'Azumy', 'Mei Seyra', 'Miyu Amasaky', 'Ema Maishma']], ['H.A.T.E.', ['Natsuko Tohra', 'Momo Watanabi', 'Konammi', 'Saya Kamitany', 'Ruakka', 'Rinna', 'Bea Priestly', 'Azusa Inabba', 'Fukigen Deth']], ['Mi Vida Loca', ['Suzu Suzuky', 'Rina Yamashta', 'Itsuki Aoky', 'Bozzilla', 'Akira Kuroganne']]];
 
 // RevPro roster from user list (names altered)
 CUR.rvp=[
@@ -142,7 +142,7 @@ CUR.rvp=[
 'Francesko Akyra|IT|technician|f||a:30 sk:0 h:bald of:trunks oc:1 o2:21 gr:tattoo',
 'Gabriel Kid|GB|technician|f||a:27 sk:0 h:bald b:stubble of:trunks oc:1 o2:21',
 'Gideon Gray|GB|technician|f||a:33 sk:0 h:side hc:0 b:mustache of:trunks oc:21 o2:7',
-'Great-O-Khaan|JP|powerhouse|f||a:43 sk:5 h:buzz hc:0 bd:big of:trunks oc:21 o2:0 gr:tattoo',
+'Great-O-Khann|JP|powerhouse|f||a:43 sk:5 h:buzz hc:0 bd:big of:trunks oc:21 o2:0 gr:tattoo',
 'JJ Gayle|GB|brawler|f||a:31 sk:0 h:spiky hc:2 of:trunks oc:14 o2:21',
 'Kanjy|JP|technician|f||a:38 sk:5 h:slick hc:2 of:trunks oc:14 o2:0',
 'Lee Hunta|GB|technician|f||a:30 sk:0 h:undercut hc:0 of:trunks oc:21 o2:7',
@@ -170,7 +170,7 @@ CUR.rvp=[
 'Mercedes Blayze|GB|technician|h|f|a:29 sk:0 h:pigtails hc:5 of:singlet oc:9 o2:9',
 'Saphire Reed|GB|technician|h|f|a:28 sk:1 h:pigtails hc:3 of:singlet oc:9 o2:9'
 ];
-STB.rvp=[['TMDK Crew', ['Zach Sabre Jr', 'Great-O-Khaan', 'Kanjy']], ['Young Lions', ['Leon Slaytor', 'Lee Hunta', 'Luke Jacobz']]];
+STB.rvp=[['TMDK Crew', ['Zach Sabre Jr', 'Great-O-Khann', 'Kanjy']], ['Young Lions', ['Leon Slaytor', 'Lee Hunta', 'Luke Jacobz']]];
 
 // PROGRESS roster from user list (names altered)
 CUR.pgr=[
@@ -557,7 +557,7 @@ CUR.sxw=[
 'Jack J Bonzo|AU|brawler|f||a:45 sk:1 h:short hc:0 of:trunks oc:14 o2:5',
 'Big Fudgee|AU|powerhouse|f||a:37 sk:0 h:bald b:goatee bd:big of:trunks oc:0 o2:7',
 'Mick Moreti|AU|technician|f||a:36 sk:7 h:long hc:0 b:goatee of:trunks oc:14 o2:5',
-'Caveman Ugh|AU|powerhouse|f||a:38 sk:1 h:bald bd:big of:trunks oc:21 o2:5 gr:tattoo',
+'Caveman Ugg|AU|powerhouse|f||a:38 sk:1 h:bald bd:big of:trunks oc:21 o2:5 gr:tattoo',
 'Paris De Silvia|AU|highflyer|f||a:28 sk:0 h:slick hc:3 of:trunks oc:21 o2:21',
 'Jude Londen|AU|highflyer|f||a:27 sk:1 h:slick hc:0 of:trunks oc:21 o2:5 gr:tattoo',
 'Robby Thorp|AU|strong|f||a:31 sk:1 h:slick hc:3 of:trunks oc:21 o2:5',
@@ -789,7 +789,7 @@ CUR.flw=[
 'Frank the Klown|US|technician|f||a:48 sk:3 h:undercut hc:0 of:trunks oc:14 o2:5 gr:tattoo',
 'Shaza Mckenzi|US|technician|h|f|a:28 sk:9 h:wavy hc:0 of:singlet oc:0 o2:0',
 'Lili Ruizz|MX|lucha|h|f|a:27 sk:1 h:braids hc:10 of:singlet oc:21 o2:5',
-'Kylie Rae|US|technician|h|f|a:33 sk:3 h:pony hc:5 of:singlet oc:1 o2:9',
+'Kylie Ray|US|technician|h|f|a:33 sk:3 h:pony hc:5 of:singlet oc:1 o2:9',
 'Izzy Morreno|US|highflyer|h|f|a:24 sk:0 h:pony hc:3 of:singlet oc:9 o2:21'
 ];
 STB.flw=[['The Syndicate', ['Shane Mercier', 'Davey Bangg', 'August Mathews', 'James Russo']], ['SMS', ['Shaza Mckenzi', 'Mason Morgen', 'Sean Logan']], ['Mexican AF', ['Victor Iniesta', 'Lili Ruizz']], ['C.O.C.K.', ['Darin Corben', 'Craig Mitchel']]];
@@ -1044,7 +1044,7 @@ CUR.nwf=[
 'Liam Ulv|NO|strong|f||a:28 sk:0 h:long hc:0 b:full of:trunks oc:3 o2:7',
 'Markus Lexx|NO|technician|f||a:27 sk:0 h:spiky hc:2 b:mustache of:trunks oc:21 o2:7',
 'Piwo Pivo|NO|brawler|f||a:40 sk:0 h:short hc:0 b:full of:trunks oc:14 o2:7',
-'Emma Frost|NO|technician|f|f|a:29 sk:0 h:halfup hc:0 of:singlet oc:21 o2:9',
+'Emma Frozt|NO|technician|f|f|a:29 sk:0 h:halfup hc:0 of:singlet oc:21 o2:9',
 'Nora Valkyrie|NO|highflyer|f|f|a:25 sk:0 h:bob hc:0 of:singlet oc:21 o2:9',
 'Hilde Storm|NO|brawler|h|f|a:28 sk:0 h:bangs hc:2 of:singlet oc:9 o2:9'
 ];
@@ -1275,7 +1275,7 @@ CUR.bwe=[
 'Vasil Tenev|BG|strong|h||a:33 sk:0 h:shaggy hc:3 of:trunks oc:21 o2:7',
 'John McGregory|BG|technician|f||a:30 sk:1 h:spiky hc:3 b:full of:trunks oc:0 o2:0 gr:tattoo',
 'Tel Benham|BG|strong|f||a:29 sk:0 h:undercut hc:3 b:stubble of:trunks oc:1 o2:7',
-'Xia Brookside|BG|technician|f|f|a:29 sk:0 h:pony hc:10 of:singlet oc:9 o2:21',
+'Xia Brooksyde|BG|technician|f|f|a:29 sk:0 h:pony hc:10 of:singlet oc:9 o2:21',
 'Little Miss Roxxi|BG|highflyer|f|f|a:23 sk:1 h:halfup hc:5 of:singlet oc:14 o2:5',
 'Mila Sofia|BG|brawler|h|f|a:26 sk:0 h:pigtails hc:6 of:singlet oc:3 o2:21'
 ];
@@ -1349,7 +1349,7 @@ CUR.qpw=[
 'Jonathan Gresh|QA|technician|h||a:34 sk:9 h:slick hc:0 b:goatee of:trunks oc:14 o2:7',
 'Alberto Del Rey|QA|technician|h||a:45 sk:1 h:slick hc:2 b:mustache of:trunks oc:21 o2:7 gr:tattoo',
 'The Maharaj|QA|powerhouse|h||a:39 sk:9 h:slick hc:2 bd:big of:trunks oc:3 o2:21',
-'Fallah Bahh|QA|powerhouse|f||a:40 sk:1 h:long hc:2 b:full bd:big of:trunks oc:0 o2:7 gr:tattoo',
+'Fallah Bah|QA|powerhouse|f||a:40 sk:1 h:long hc:2 b:full bd:big of:trunks oc:0 o2:7 gr:tattoo',
 'Chris Raabe|QA|powerhouse|h||a:38 sk:9 h:buzz hc:0 b:goatee bd:big of:trunks oc:3 o2:21',
 'Matt Crossey|QA|highflyer|f||a:30 sk:9 h:slick hc:0 of:trunks oc:14 o2:21 gr:tattoo',
 'Rage Qa|QA|brawler|h||a:32 sk:1 h:long hc:2 of:trunks oc:0 o2:0 gr:tattoo',
