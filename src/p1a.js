@@ -12,7 +12,7 @@ const D={
 'start.title':['Wybierz federację','Choose your promotion'],
 'start.sub':['Każda federacja gra się inaczej: od hali na 250 osób po stadiony na 50 tysięcy. Wszystkie nazwy i zawodnicy w paczce domyślnej są fikcyjni.','Every promotion plays differently: from a 250-seat hall to 50,000-seat stadiums. All names and wrestlers in the default pack are fictional.'],
 'start.continue':['Kontynuuj zapisaną grę','Continue saved game'],'start.play':['Prowadź tę federację','Run this promotion'],
-'start.custom':['Załóż własną federację','Found your own promotion'],'start.customsub':['Zaczynasz od zera: mała hala, 4 zawodników i 12 tysięcy dolarów.','Start from nothing: a small hall, 4 wrestlers and $12k.'],
+'start.custom':['Załóż własną federację','Found your own promotion'],'start.customsub':['Zaczynasz od zera: mała hala, 10 zawodników i 18 tysięcy dolarów. Roster i pasy możesz wygenerować albo stworzyć sam.','Start from nothing: a small hall, 10 wrestlers and $18k. Generate the roster and belts or create your own.'],
 'start.name':['Nazwa federacji','Promotion name'],'start.country':['Kraj','Country'],'start.create':['Zacznij od zera','Start from zero'],
 'start.roster':['{n} zawodników w składzie','{n} wrestlers on the roster'],'start.cash':['Budżet','Cash'],'start.pop':['Popularność','Popularity'],
 'tier.1':['Lokalna','Local'],'tier.2':['Regionalna','Regional'],'tier.3':['Krajowa','National'],'tier.4':['Międzynarodowa','International'],'tier.5':['Globalna','Global'],
