@@ -238,8 +238,8 @@ function avatarDerive(l){
  if(o.mouth==null)o.mouth=['line','line','smile','smirk','frown','open','teeth','smile'][q(59,8)];
  if(o.deco==null)o.deco=['none','none','side','band','twin','flame','dots','cross','long','long','longside','side'][q(19,12)];
  if(o.shoe==null)o.shoe=['none','boots','boots','shoes','sneak','sneak','socks','none','boots'][q(23,9)];
- if((l.gear==null||l.gear==='none')&&q(29,100)<42)o.gear=['kneepads','wristbands','pads','tape','elbow','armband','gloves','tattoo'][q(31,8)];
- if((l.face==null||l.face==='none')&&q(37,100)<10)o.face=fem?'freckles':['scar','freckles','bruise','bandage'][q(41,4)];
+ if(!l.nh&&(l.gear==null||l.gear==='none')&&q(29,100)<42)o.gear=['kneepads','wristbands','pads','tape','elbow','armband','gloves','tattoo'][q(31,8)];
+ if(!l.nh&&(l.face==null||l.face==='none')&&q(37,100)<10)o.face=fem?'freckles':['scar','freckles','bruise','bandage'][q(41,4)];
  return o}
 function avatar(l,px){
  const d=avatarDerive(l);let sv=avatarBase(d,px);
