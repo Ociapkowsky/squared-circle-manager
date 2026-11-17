@@ -10,3 +10,9 @@ const out=game.slice(0,i)+'<script>\n'+shim+'\n</script>\n'+game.slice(i);
 fs.mkdirSync(path.join(root,'app'),{recursive:true});
 fs.writeFileSync(path.join(root,'app','index.html'),out);
 console.log('app/index.html',out.length,'bytes');
+
+// copy plate/strap shading maps next to the game
+const pd=path.join(root,'src','plates'),pa=path.join(root,'app','plates');
+fs.rmSync(pa,{recursive:true,force:true});fs.mkdirSync(pa,{recursive:true});
+for(const f of fs.readdirSync(pd))fs.copyFileSync(path.join(pd,f),path.join(pa,f));
+console.log('app/plates',fs.readdirSync(pa).length,'files');
