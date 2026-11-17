@@ -20,7 +20,7 @@ function readLogo(file,cb){
  fr.readAsDataURL(file)}
 const _vs=viewStart;viewStart=function(){let h=_vs.apply(this,arguments);
  try{if(typeof h==='string'){
-  PACK.feds.forEach(f=>{if(!FL[f.id])return;const a='<div class="wname"><span class="dot" style="background:'+esc(f.color||'#888')+'"></span>'+esc(f.name);h=h.replace(a,'<div class="wname">'+lg(f,28)+' '+esc(f.name))});
+  PACK.feds.forEach(f=>{if(!FL[f.id])return;const a='<div class="wname"><span class="dot" style="background:'+esc(f.color||'#888')+'"></span>'+esc(f.name);h=h.replace(a,'<div style="height:72px;display:flex;align-items:center;margin:0 0 8px">'+lg(f,72)+'</div>'+a)});
   const blk='<label class="px">'+esc(t('lg.t'))+'</label><div class="row"><span id="lgprev">'+(CL?'<img class="fedlogo lgbox" src="'+CL+'" alt="" style="max-height:44px;max-width:150px;width:auto;height:auto">':'<span class="mute">'+esc(t('lg.none'))+'</span>')+'</span><label class="btn sm" style="cursor:pointer">'+esc(t('lg.up'))+'<input type="file" accept="image/*" data-chg="lgnew" hidden></label><button class="btn sm" data-act="lgnewclear">'+esc(t('lg.rm'))+'</button></div><div class="mute" style="font-size:12px">'+esc(t('lg.hint'))+'</div>';
   h=h.replace('<button class="btn gold" data-act="custom">',blk+'<button class="btn gold" data-act="custom">')}}catch(e){}return h};
 CHG.lgnew=function(el){readLogo(el.files&&el.files[0],u=>{CL=u;const p=document.getElementById('lgprev');if(p)p.innerHTML='<img class="fedlogo lgbox" src="'+u+'" alt="" style="max-height:44px;max-width:150px;width:auto;height:auto">'})};
