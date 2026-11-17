@@ -6,7 +6,7 @@ let CL=null;
 Object.assign(D,{'lg.t':['Logo federacji','Promotion logo'],'lg.up':['Wgraj logo','Upload logo'],'lg.rm':['Usuń logo','Remove logo'],
  'lg.hint':['PNG, JPG lub WebP, najlepiej na przezroczystym tle. Obraz zostanie zmniejszony i zapisany razem z grą.','PNG, JPG or WebP, ideally on a transparent background. The image is shrunk and stored with the save.'],
  'lg.none':['Brak logo','No logo'],'lg.big':['Plik jest za duży (max 6 MB).','File is too large (max 6 MB).'],'lg.bad':['Nie udało się wczytać obrazu.','Could not read the image.']});
-try{const st=document.createElement('style');st.textContent='.fedlogo{display:inline-block;vertical-align:middle;object-fit:contain;max-width:100%}.fedlogo.lgbox{background:rgba(127,127,127,.12);border-radius:8px;padding:4px}';document.head.appendChild(st)}catch(e){}
+try{const st=document.createElement('style');st.textContent='.fedlogo{filter:drop-shadow(0 0 1px rgba(0,0,0,.9)) drop-shadow(0 0 1px rgba(0,0,0,.6));display:inline-block;vertical-align:middle;object-fit:contain;max-width:100%}.fedlogo.lgbox{background:rgba(127,127,127,.12);border-radius:8px;padding:4px}';document.head.appendChild(st)}catch(e){}
 const logoOf=f=>(f&&(f.logo||FL[f.id]))||'';
 const lg=(f,h)=>{const s=logoOf(f);return s?'<img class="fedlogo" src="'+esc(s)+'" alt="" style="max-height:'+h+'px;max-width:'+Math.round(h*3.4)+'px;width:auto;height:auto">':''};
 window.fedLogoHtml=lg;
@@ -20,7 +20,7 @@ function readLogo(file,cb){
  fr.readAsDataURL(file)}
 const _vs=viewStart;viewStart=function(){let h=_vs.apply(this,arguments);
  try{if(typeof h==='string'){
-  PACK.feds.forEach(f=>{if(!FL[f.id])return;const a='<div class="wname"><span class="dot" style="background:'+esc(f.color||'#888')+'"></span>'+esc(f.name);h=h.replace(a,'<div style="height:72px;display:flex;align-items:center;margin:0 0 8px">'+lg(f,72)+'</div>'+a)});
+  PACK.feds.forEach(f=>{if(!FL[f.id])return;const a='<div class="wname"><span class="dot" style="background:'+esc(f.color||'#888')+'"></span>'+esc(f.name);h=h.replace(a,'<div style="height:84px;margin:0 0 10px;width:100%;flex:0 0 100%;box-sizing:border-box"><img class="fedlogo" src="'+esc(logoOf(f))+'" alt="" style="display:block;width:100%;height:100%;max-width:none;object-fit:contain;object-position:center"></div>'+a)});
   const blk='<label class="px">'+esc(t('lg.t'))+'</label><div class="row"><span id="lgprev">'+(CL?'<img class="fedlogo lgbox" src="'+CL+'" alt="" style="max-height:44px;max-width:150px;width:auto;height:auto">':'<span class="mute">'+esc(t('lg.none'))+'</span>')+'</span><label class="btn sm" style="cursor:pointer">'+esc(t('lg.up'))+'<input type="file" accept="image/*" data-chg="lgnew" hidden></label><button class="btn sm" data-act="lgnewclear">'+esc(t('lg.rm'))+'</button></div><div class="mute" style="font-size:12px">'+esc(t('lg.hint'))+'</div>';
   h=h.replace('<button class="btn gold" data-act="custom">',blk+'<button class="btn gold" data-act="custom">')}}catch(e){}return h};
 CHG.lgnew=function(el){readLogo(el.files&&el.files[0],u=>{CL=u;const p=document.getElementById('lgprev');if(p)p.innerHTML='<img class="fedlogo lgbox" src="'+u+'" alt="" style="max-height:44px;max-width:150px;width:auto;height:auto">'})};
