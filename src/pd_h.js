@@ -3464,7 +3464,7 @@ const FED_SPECS=[
  {id:'mzw',name:'Manic Zone Wrestling',short:'MZW',country:'PL',tier:1,pop:12,cash:12e3,n:24,color:'#e65100'},
  {id:'mcw',name:'Mining City Wrestling',short:'MCW',country:'PL',tier:1,pop:11,cash:11e3,n:9,color:'#37474f'},
  {id:'kpw',name:'Kaszuby Pro Wrestling',short:'KPW',country:'PL',tier:1,pop:13,cash:13e3,n:40,color:'#0277bd'},
- {id:'low',name:'Legacy of Wrestling',short:'LOW',country:'PL',tier:1,pop:9,cash:9e3,n:22,color:'#6a1b9a'},
+ {id:'low',name:'Legacy of Wrestlers',short:'LOW',country:'PL',tier:1,pop:9,cash:9e3,n:22,color:'#6a1b9a'},
  // small independents
  {id:'flw',name:'Freelance Wrestling',short:'FLW',country:'US',tier:1,pop:14,cash:15e3,n:8,color:'#c2185b'},
  {id:'nst',name:'Preston City Wrestling',short:'PCW',country:'GB',tier:1,pop:15,cash:16e3,n:7,color:'#7a8aa6'},

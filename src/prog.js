@@ -1920,7 +1920,7 @@ const FED_SPECS=[
  {id:'mzw',name:'Manic Zone Wrestling',short:'MZW',country:'PL',tier:1,pop:12,cash:12e3,n:24,color:'#e65100'},
  {id:'mcw',name:'Mining City Wrestling',short:'MCW',country:'PL',tier:1,pop:11,cash:11e3,n:9,color:'#37474f'},
  {id:'kpw',name:'Kaszuby Pro Wrestling',short:'KPW',country:'PL',tier:1,pop:13,cash:13e3,n:40,color:'#0277bd'},
- {id:'low',name:'Legacy of Wrestling',short:'LOW',country:'PL',tier:1,pop:9,cash:9e3,n:22,color:'#6a1b9a'},
+ {id:'low',name:'Legacy of Wrestlers',short:'LOW',country:'PL',tier:1,pop:9,cash:9e3,n:22,color:'#6a1b9a'},
  {id:'bws',name:'Bałtyk Wrestling Show',short:'BWS',country:'PL',tier:1,pop:11,cash:11e3,n:6,color:'#3aa0d9'},
  // small independents
  {id:'rbb',name:'Rust Belt Brawl',short:'RBB',country:'US',tier:1,pop:12,cash:14e3,n:7,color:'#b26a1a'},
