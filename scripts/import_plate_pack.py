@@ -8,7 +8,7 @@ raw=Image.open(img);HASA=raw.mode=='RGBA' and np.array(raw)[:,:,3].min()<10
 im=raw.convert('RGB');A=np.array(im).astype(float)
 AL=np.array(raw)[:,:,3] if HASA else None
 L=0.299*A[:,:,0]+0.587*A[:,:,1]+0.114*A[:,:,2]
-dark=ndi.binary_closing((AL>40) if HASA else (L<22),iterations=2);fill=ndi.binary_fill_holes(dark)
+dark=ndi.binary_closing((AL>40) if HASA else (L<float(__import__('os').environ.get('TH','22'))),iterations=int(__import__('os').environ.get('IT','2')));fill=ndi.binary_fill_holes(dark)
 lab,n=ndi.label(fill)
 objs=[(i+1,s) for i,s in enumerate(ndi.find_objects(lab)) if (lab[s]==i+1).sum()>8000]
 assert len(objs)==len(keys),(len(objs),len(keys))
@@ -17,7 +17,24 @@ cy=lambda o:(o[1][0].start+o[1][0].stop)/2;cx=lambda o:(o[1][1].start+o[1][1].st
 objs.sort(key=lambda o:(int(cy(o)//(H/rows)),cx(o)))
 p='/home/claude/rb/plimg_data.js';t=open(p).read();head,body=t.split('const PLIMG=',1);ent=json.loads(body.rsplit(';',1)[0])
 for key,(l,s) in zip(keys,objs):
-    m=lab==l;a=np.array(Image.fromarray((m*255).astype('uint8')).filter(ImageFilter.GaussianBlur(0.8)))
+    if __import__('os').environ.get('ONLY') and key not in __import__('os').environ['ONLY'].split(','): continue
+    m=lab==l
+    if __import__('os').environ.get('BGCLEAN'):
+        er=ndi.binary_erosion(m,iterations=14);band=m&~er&(L>175)
+        cl,cn=ndi.label(band);edge=ndi.binary_dilation(~m,iterations=2)
+        rem=np.zeros_like(m)
+        for j in range(1,cn+1):
+            cj=cl==j
+            if (cj&edge).any(): rem|=cj
+        m=m&~rem;m=ndi.binary_opening(m,iterations=int(__import__('os').environ.get('OP','1')));ll,nn=ndi.label(m);sz=ndi.sum(m,ll,range(1,nn+1));m=ll==(1+int(np.argmax(sz)))
+    if __import__('os').environ.get('FILLTOP'):
+        ys0,xs0=np.where(m);y0,y1,x0,x1=ys0.min(),ys0.max(),xs0.min(),xs0.max()
+        mc=ndi.binary_fill_holes(ndi.binary_closing(m,iterations=18));r=mc&~m
+        box=np.zeros_like(m);box[y0:int(y0+(y1-y0)*.4),int(x0+(x1-x0)*.28):int(x0+(x1-x0)*.72)]=True
+        r&=box;L=np.where(r,70.0,L);m=m|r
+    ring=m&~ndi.binary_erosion(m,iterations=2)
+    if True: L=np.where(ring,np.minimum(L,18),L)
+    a=np.array(Image.fromarray((m*255).astype('uint8')).filter(ImageFilter.GaussianBlur(0.8)))
     lo,hi=np.percentile(L[m],[3,97]);G=np.clip((L-lo)/(hi-lo),0,1)*255
     out=np.zeros(A.shape[:2]+(4,),dtype='uint8');out[:,:,0]=out[:,:,1]=out[:,:,2]=G.astype('uint8');out[:,:,3]=a
     ys,xs=np.where(m);out=out[ys.min():ys.max()+1,xs.min():xs.max()+1]
