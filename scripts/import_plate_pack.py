@@ -4,9 +4,11 @@ import numpy as np
 from scipy import ndimage as ndi
 # usage: imp.py image key1,key2,... [cols]
 img,keys=sys.argv[1],sys.argv[2].split(',');cols=int(sys.argv[3]) if len(sys.argv)>3 else 4
-im=Image.open(img).convert('RGB');A=np.array(im).astype(float)
+raw=Image.open(img);HASA=raw.mode=='RGBA' and np.array(raw)[:,:,3].min()<10
+im=raw.convert('RGB');A=np.array(im).astype(float)
+AL=np.array(raw)[:,:,3] if HASA else None
 L=0.299*A[:,:,0]+0.587*A[:,:,1]+0.114*A[:,:,2]
-dark=ndi.binary_closing(L<22,iterations=2);fill=ndi.binary_fill_holes(dark)
+dark=ndi.binary_closing((AL>40) if HASA else (L<22),iterations=2);fill=ndi.binary_fill_holes(dark)
 lab,n=ndi.label(fill)
 objs=[(i+1,s) for i,s in enumerate(ndi.find_objects(lab)) if (lab[s]==i+1).sum()>8000]
 assert len(objs)==len(keys),(len(objs),len(keys))
