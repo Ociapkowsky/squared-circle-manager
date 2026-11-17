@@ -16,3 +16,9 @@ const pd=path.join(root,'src','plates'),pa=path.join(root,'app','plates');
 fs.rmSync(pa,{recursive:true,force:true});fs.mkdirSync(pa,{recursive:true});
 for(const f of fs.readdirSync(pd))fs.copyFileSync(path.join(pd,f),path.join(pa,f));
 console.log('app/plates',fs.readdirSync(pa).length,'files');
+
+// copy federation logos
+const ld=path.join(root,'src','logos'),la=path.join(root,'app','logos');
+fs.rmSync(la,{recursive:true,force:true});fs.mkdirSync(la,{recursive:true});
+if(fs.existsSync(ld))for(const f of fs.readdirSync(ld))fs.copyFileSync(path.join(ld,f),path.join(la,f));
+console.log('app/logos',fs.readdirSync(la).length,'files');
