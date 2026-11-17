@@ -6,7 +6,7 @@ let CL=null;
 Object.assign(D,{'lg.t':['Logo federacji','Promotion logo'],'lg.up':['Wgraj logo','Upload logo'],'lg.rm':['Usuń logo','Remove logo'],
  'lg.hint':['PNG, JPG lub WebP, najlepiej na przezroczystym tle. Obraz zostanie zmniejszony i zapisany razem z grą.','PNG, JPG or WebP, ideally on a transparent background. The image is shrunk and stored with the save.'],
  'lg.none':['Brak logo','No logo'],'lg.big':['Plik jest za duży (max 6 MB).','File is too large (max 6 MB).'],'lg.bad':['Nie udało się wczytać obrazu.','Could not read the image.']});
-try{const st=document.createElement('style');st.textContent='.fedlogo{filter:drop-shadow(0 0 1px rgba(0,0,0,.9)) drop-shadow(0 0 1px rgba(0,0,0,.6));display:inline-block;vertical-align:middle;object-fit:contain;max-width:100%}.fedlogo.lgbox{background:rgba(127,127,127,.12);border-radius:8px;padding:4px}';document.head.appendChild(st)}catch(e){}
+try{const st=document.createElement('style');st.textContent='.thm,[data-act="qtheme"]{display:none!important}.fedlogo{filter:drop-shadow(0 0 1px rgba(0,0,0,.9)) drop-shadow(0 0 1px rgba(0,0,0,.6));display:inline-block;vertical-align:middle;object-fit:contain;max-width:100%}.fedlogo.lgbox{background:rgba(127,127,127,.12);border-radius:8px;padding:4px}';document.head.appendChild(st)}catch(e){}
 const logoOf=f=>(f&&(f.logo||FL[f.id]))||'';
 const lg=(f,h)=>{const s=logoOf(f);return s?'<img class="fedlogo" src="'+esc(s)+'" alt="" style="max-height:'+h+'px;max-width:'+Math.round(h*3.4)+'px;width:auto;height:auto">':''};
 window.fedLogoHtml=lg;
