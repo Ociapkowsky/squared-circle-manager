@@ -1,6 +1,6 @@
 ;/* federation logos: built-in logos + upload your own */
 (function(){
-const FL={gwf:'logos/gwf.webp',apw:'logos/apw.webp',cwe:'logos/cwe.webp',nnp:'logos/nnpw.webp'};
+const FL={gwf:'logos/gwf.webp',apw:'logos/apw.webp',cwe:'logos/cwe.webp',nnp:'logos/nnpw.webp',cul:'logos/cull.webp'};
 window.FEDLOGO=FL;
 let CL=null;
 Object.assign(D,{'lg.t':['Logo federacji','Promotion logo'],'lg.up':['Wgraj logo','Upload logo'],'lg.rm':['Usuń logo','Remove logo'],
