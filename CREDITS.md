@@ -1,6 +1,6 @@
 # Credits
 
-Squared Circle Manager is an unofficial fan game, free to play (pay what you want). All promotions, wrestlers and names in the default pack are fictional.
+Squared Circle Manager is an unofficial fan game, free to play. All promotions, wrestlers and names in the default pack are fictional.
 
 ## Sounds (Pixabay Content License)
 
